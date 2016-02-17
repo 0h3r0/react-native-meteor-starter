@@ -3,7 +3,8 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
 import styles from './_accountsStyles';
@@ -40,7 +41,7 @@ export default React.createClass({
       Accounts.signUp(email, password).then( (result) => {
         console.log(result);
       }, (err) => {
-        console.log(err);
+        Alert.alert("Error", err.reason)
       })
     });
   },

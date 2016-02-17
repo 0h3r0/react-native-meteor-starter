@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "ios": "open ios/Starter.xcodeproj && REACT_EDITOR=atom npm start"
   },
   "dependencies": {
+    "apsl-react-native-button": "^2.4.2",
     "react-native": "^0.19.0",
-    "react-native-button": "^1.4.2"
+    "react-native-button": "^1.4.2",
+    "react-native-scrollable-tab-view": "^0.3.5"
   }
 }

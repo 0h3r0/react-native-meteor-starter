@@ -6,15 +6,17 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import Button from 'react-native-button';
+import Button from 'apsl-react-native-button';
 
 export default React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <Text>No connection :(</Text>
+        <Text style={styles.message}>
+          {this.props.loaded ? "No connection :(" : "Loading..." }
+        </Text>
         <Button
-        style={{fontSize: 20, color: 'green'}}
+        style={styles.button}
         styleDisabled={{color: 'red'}}
         onPress={this.props.handlePress}
       >
@@ -29,6 +31,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  message: {
+    fontSize: 20
+  },
+  button: {
+    marginTop: 10,
+    margin: 10,
   }
 });

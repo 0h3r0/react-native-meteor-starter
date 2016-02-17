@@ -9,6 +9,7 @@ import Home from './home/home.js';
 import NavigationBar from 'react-native-navbar';
 import AppOptions from './appOptions';
 import NoConnection from './NoConnection.js';
+import Onboarding from './onboarding/Onboarding.js';
 
 import ddpClient from '../config/db/lib/ddpClient';
 import Accounts from '../config/db/accounts';
@@ -24,12 +25,17 @@ export default React.createClass({
   getInitialState() {
     return {
       loaded: false,
+      connecting: false,
       connectionFailed: false
     };
   },
 
   // Try to establish DDP connection
   attemptConnection() {
+    this.setState({
+      loaded: false
+    })
+
     // Close any connections if active
     try {
       ddpClient.close()
@@ -108,6 +114,10 @@ export default React.createClass({
 
   // Component Render
   render() {
+    if (this.state.connectionFailed) {
+      return <NoConnection handlePress={this.attemptConnection} loaded={this.state.loaded} />
+    }
+
     if (!this.state.loaded) {
       return (
         <View style={styles.loading}>
@@ -116,8 +126,11 @@ export default React.createClass({
       );
     }
 
-    if (this.state.connectionFailed) {
-      return <NoConnection handlePress={this.attemptConnection} />
+
+    if (true) {
+      return (
+        <Onboarding />
+      )
     }
 
     return (
