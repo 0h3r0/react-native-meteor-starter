@@ -5,6 +5,9 @@ import React, {
   Navigator,
 } from 'react-native';
 
+console.log(Navigator.NavigationBar.Styles.General.TotalNavHeight);
+
+
 import Home from './home/home.js';
 import NavigationBar from 'react-native-navbar';
 import AppOptions from './appOptions';
@@ -149,7 +152,7 @@ export default React.createClass({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   loading: {
     flex: 1,
