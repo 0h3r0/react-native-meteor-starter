@@ -16,10 +16,9 @@ export default React.createClass({
           {this.props.loaded ? "No connection :(" : "Loading..." }
         </Text>
         <Button
-        style={styles.button}
-        styleDisabled={{color: 'red'}}
-        onPress={this.props.handlePress}
-      >
+          style={styles.button}
+          onPress={this.props.handlePress}
+        >
         Try again
       </Button>
       </View>
@@ -38,6 +37,6 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
-    margin: 10,
+    margin: 10
   }
 });

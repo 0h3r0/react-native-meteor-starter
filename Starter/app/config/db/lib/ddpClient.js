@@ -1,19 +1,9 @@
-let DDPClient = require("ddp-client");
-let _ = require("underscore");
+import DDPClient from "ddp-client";
+import _ from "underscore";
 
-let ddpClient = new DDPClient({
-  // All properties optional, defaults shown
-  host : "localhost",
-  port : 3000,
-  ssl  : false,
-  autoReconnect : true,
-  autoReconnectTimer : 500,
-  maintainCollections : true,
-  ddpVersion : '1',  // ['1', 'pre2', 'pre1'] available
-  // Use a full url instead of a set of `host`, `port` and `ssl`
-  // url: 'wss://example.com/websocket'
-  // socketConstructor: WebSocket // Another constructor to create new WebSockets
-});
+import Environment from '../../../environment.js';
+
+let ddpClient = new DDPClient(Environment.ddpOptions);
 
 let ddp = {};
 ddp.connection = ddpClient;
@@ -24,6 +14,7 @@ ddp.initialize = () => {
       // If autoReconnect is true, this back will be invoked each time
       // a server connection is re-established
       if (error) {
+        console.log(error);
         console.log('DDP connection error!');
         return reject(error);
       }
