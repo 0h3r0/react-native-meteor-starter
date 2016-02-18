@@ -1,10 +1,15 @@
 # Meteor React Native Starter Boilerplate
-A boilerplate for [Meteor](http://meteor.com) and [React Native](https://facebook.github.io/react-native/).
+A boilerplate for [Meteor](http://meteor.com) and [React Native](https://facebook.github.io/react-native/) written in ES6.
 
 ### What's in the box
 * **Onboarding** - swipe through welcome panels
 * **Accounts** - create accounts & sign up
 * **CRUD** - add, update, items to a collection
+
+
+### Christmas list
+* Fonts
+* Material design (?)
 
 ### Quick Start
 ##### 0. Prerequisites

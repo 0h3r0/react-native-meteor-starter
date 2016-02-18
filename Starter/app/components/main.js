@@ -7,7 +7,6 @@ import React, {
 
 import Home from './home/home.js';
 import NavigationBar from 'react-native-navbar';
-import AppOptions from './appOptions';
 import NoConnection from './NoConnection.js';
 import Onboarding from './onboarding/Onboarding.js';
 
@@ -46,6 +45,12 @@ export default React.createClass({
     }
 
     ddpClient.initialize()
+      .catch((err) => {
+        this.setState({
+          loaded: true,
+          connectionFailed: true
+        });
+      })
       .then(() => {
         return Accounts.signInWithToken();
       })
@@ -57,9 +62,13 @@ export default React.createClass({
       })
       .catch((err) => {
         console.log(err)
+
+        // This will occur is you switch environments
+        if (err.reason === "You've been logged out by the server. Please log in again."){
+          Accounts.signOut();
+        }
         this.setState({
-          loaded: true,
-          connectionFailed: true
+          loaded: true
         });
         return
       })
@@ -80,12 +89,15 @@ export default React.createClass({
         this.setState({user: {_id: userId}});
       }
     });
+  },
 
-    Accounts.emitter.on('loggedIn', (userId) => {
-      if (userId) {
-        this.setState({user: {_id: userId}});
-      }
-    });
+  handleLoggedIn(userId) {
+    if (userId) {
+      this.setState({user: {_id: userId}});
+    }
+  },
+  handleLoggedOut() {
+    this.setState({user: null})
   },
 
   componentWillUnmount() {
@@ -123,15 +135,20 @@ export default React.createClass({
 
     return (
       <View style={styles.container}>
+
+        {this.state.user ?
         <NavigationBar
           title={title}
           leftButton={leftButton}
           rightButton={rightButton}
           />
+        : null }
 
         <Component
           navigator={navigator}
           user={this.state.user}
+          handleLoggedIn={this.handleLoggedIn}
+          handleLoggedOut={this.handleLoggedOut}
           {...route.passProps}
           />
       </View>
@@ -152,19 +169,18 @@ export default React.createClass({
       );
     }
 
-    if (this.state.showOnboarding) {
-      return (
-        <Onboarding handlePress={this.handleOnboardingPress} />
-      )
-    }
+    // Get initial route based on user state
+    let initialRoute = this.state.user ?
+      {
+        component: Home,
+        title: "Home"
+      } : {
+        component: Onboarding
+      }
 
     return (
       <Navigator
-        initialRoute={{
-          component: Home,
-          title: "Todo Lists",
-          rightButton: <AppOptions />
-        }}
+        initialRoute={initialRoute}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
       />

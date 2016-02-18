@@ -4,12 +4,14 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Alert
+  Alert,
+  Navigator
 } from 'react-native';
 
 import styles from './_accountsStyles';
 
 import Accounts from '../../config/db/accounts';
+import Home from '../home/home.js';
 
 export default React.createClass({
   // Configuration
@@ -27,6 +29,10 @@ export default React.createClass({
 
   // Event Handlers
   handleSignUp() {
+    this.setState({
+      error: null
+    })
+
     let { email, password, confirmPassword } = this.state;
     if (!email || !password || !confirmPassword) {
       return this.setState({error: 'Please enter all fields.'});
@@ -37,9 +43,15 @@ export default React.createClass({
     }
 
     this.setState({email: '', password: '', confirmPassword: ''}, () => {
-      this.props.navigator.pop();
       Accounts.signUp(email, password).then( (result) => {
-        console.log(result);
+        console.log("Signed up successfully");
+        this.props.navigator.push({
+          title: 'Home',
+          component: Home,
+          sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump
+        })
+        let userId = result.userId;
+        this.props.handleLoggedIn(userId);
       }, (err) => {
         Alert.alert("Error", err.reason)
       })

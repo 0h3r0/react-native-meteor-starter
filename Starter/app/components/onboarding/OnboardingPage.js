@@ -10,7 +10,6 @@ module.exports = React.createClass({
       <View style={[styles.container, this.props.style || {}]}>
         <Text style={styles.title}>{this.props.title}</Text>
         <Text style={styles.subtitle}>{this.props.subtitle}</Text>
-        {this.props.renderButton ? this.props.renderButton() : null}
       </View>
     )
   }
