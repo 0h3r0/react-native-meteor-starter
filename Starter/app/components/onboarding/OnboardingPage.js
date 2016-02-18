@@ -4,25 +4,13 @@ import React, {
   Text,
 } from 'react-native';
 
-import Button from 'apsl-react-native-button';
-
 module.exports = React.createClass({
-  renderButton() {
-    return (
-        <Button
-        style={styles.button}
-        onPress={this.props.handlePress}
-      >
-        Get started
-      </Button>
-    )
-  },
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, this.props.style || {}]}>
         <Text style={styles.title}>{this.props.title}</Text>
         <Text style={styles.subtitle}>{this.props.subtitle}</Text>
-        {this.props.showButton ? this.renderButton() : null}
+        {this.props.renderButton ? this.props.renderButton() : null}
       </View>
     )
   }
@@ -37,13 +25,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     marginBottom: 5,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: "white"
   },
   subtitle: {
     fontSize: 20,
-    textAlign: 'center'
-  },
-  button: {
-    margin: 10
+    textAlign: 'center',
+    color: "white"
   }
 })

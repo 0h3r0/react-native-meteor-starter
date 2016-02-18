@@ -1,28 +1,23 @@
 'use strict';
 
 import React, {
-  AppRegistry,
   Component,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import OnboardingPage from '../onboarding/OnboardingPage.js';
+import MyTransactions from '../my-transactions/MyTransactions.js';
+
 export default React.createClass({
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <ScrollableTabView>
+        <MyTransactions tabLabel="Payments" />
+      <OnboardingPage tabLabel="React" title="Welcome to Bitwala" style={{backgroundColor: "3498db"}} />
+    </ScrollableTabView>
     )
   }
 })

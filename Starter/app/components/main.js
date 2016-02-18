@@ -5,9 +5,6 @@ import React, {
   Navigator,
 } from 'react-native';
 
-console.log(Navigator.NavigationBar.Styles.General.TotalNavHeight);
-
-
 import Home from './home/home.js';
 import NavigationBar from 'react-native-navbar';
 import AppOptions from './appOptions';
@@ -29,7 +26,9 @@ export default React.createClass({
     return {
       loaded: false,
       connecting: false,
-      connectionFailed: false
+      connectionFailed: false,
+      showOnboarding: true,
+      user: null
     };
   },
 
@@ -57,6 +56,7 @@ export default React.createClass({
         });
       })
       .catch((err) => {
+        console.log(err)
         this.setState({
           loaded: true,
           connectionFailed: true
@@ -64,9 +64,28 @@ export default React.createClass({
         return
       })
   },
+  handleOnboardingPress() {
+    this.setState({
+      showOnboarding: false
+    })
+  },
+
   // Component Lifecycle
   componentWillMount() {
     this.attemptConnection();
+
+    // Handling user session
+    Accounts.userId.then((userId) => {
+      if (userId) {
+        this.setState({user: {_id: userId}});
+      }
+    });
+
+    Accounts.emitter.on('loggedIn', (userId) => {
+      if (userId) {
+        this.setState({user: {_id: userId}});
+      }
+    });
   },
 
   componentWillUnmount() {
@@ -78,7 +97,10 @@ export default React.createClass({
     if (route.sceneConfig) {
       return route.sceneConfig;
     }
-    return Navigator.SceneConfigs.HorizontalSwipeJump;
+    return {
+      ...Navigator.SceneConfigs.HorizontalSwipeJump,
+      gestures: false
+    }
   },
 
   renderScene(route, navigator) {
@@ -109,6 +131,7 @@ export default React.createClass({
 
         <Component
           navigator={navigator}
+          user={this.state.user}
           {...route.passProps}
           />
       </View>
@@ -129,10 +152,9 @@ export default React.createClass({
       );
     }
 
-
-    if (true) {
+    if (this.state.showOnboarding) {
       return (
-        <Onboarding />
+        <Onboarding handlePress={this.handleOnboardingPress} />
       )
     }
 

@@ -32,9 +32,9 @@ export default React.createClass({
     }
 
     this.setState({email: '', password: ''}, () => {
-      this.props.navigator.pop();
       Accounts.signIn(email, password).then( (result) => {
         console.log(result);
+        this.props.navigator.pop();
       }, (err) => {
         Alert.alert("Error", err.reason)
       })
