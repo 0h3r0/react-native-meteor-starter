@@ -13,15 +13,19 @@ import Accounts from '../../config/db/accounts.js';
 import Onboarding from '../onboarding/Onboarding.js';
 
 import OnboardingPage from '../onboarding/OnboardingPage.js';
-import MyTransactions from '../my-transactions/MyTransactions.js';
+import Items from './Items.js';
+import ItemForm from './ItemForm.js';
 
 export default React.createClass({
   render() {
     return (
-      <ScrollableTabView>
-        <MyTransactions tabLabel="Payments" handleLoggedOut={this.props.handleLoggedOut} navigator={this.props.navigator} />
-        <OnboardingPage tabLabel="React" title="Welcome to Bitwala" style={{backgroundColor: "3498db"}} />
-      </ScrollableTabView>
+      <View style={styles.container}>
+        <ScrollableTabView>
+          <Items tabLabel="Payments" handleLoggedOut={this.props.handleLoggedOut} navigator={this.props.navigator} />
+          <OnboardingPage tabLabel="React" title="Welcome to Bitwala" style={{backgroundColor: "3498db"}} />
+        </ScrollableTabView>
+        <ItemForm />
+      </View>
     )
   }
 })
@@ -29,8 +33,6 @@ export default React.createClass({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {

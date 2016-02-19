@@ -1,12 +1,12 @@
 let ddpClient = require('./lib/ddpClient');
 
-let TransactionsDB = {};
+let ItemsDB = {};
 
-TransactionsDB.subscribeToLists = () => {
+ItemsDB.subscribeToLists = () => {
   return ddpClient.subscribe('bills', [])
 };
 
-TransactionsDB.observeLists = (cb) => {
+ItemsDB.observeLists = (cb) => {
   let observer = ddpClient.connection.collections.observe(() => {
     let collection = ddpClient.connection.collections.bills;
     if (collection)
@@ -18,17 +18,17 @@ TransactionsDB.observeLists = (cb) => {
   });
 };
 
-// TransactionsDB.getLists = (userId) => {
+// ItemsDB.getLists = (userId) => {
 //   return new Promise(function (resolve, reject){
 //     resolve(ddpClient.connection.collections.lists.find());
 //   });
 // };
 //
-// TransactionsDB.addNewList = (listName) => {
+// ItemsDB.addNewList = (listName) => {
 //   return ddpClient.call('Lists.insert', [false, listName]);
 // };
 //
-// TransactionsDB.changeListVisibility = (listId, userId) => {
+// ItemsDB.changeListVisibility = (listId, userId) => {
 //   let mod = {$unset: {userId: true}};
 //
 //   if (userId) {
@@ -38,7 +38,7 @@ TransactionsDB.observeLists = (cb) => {
 //   return ddpClient.call('Lists.update', [listId, mod]);
 // };
 //
-// TransactionsDB.deleteList = (listId) => {
+// ItemsDB.deleteList = (listId) => {
 //   let todosColl = ddpClient.connection.collections.todos;
 //   if (todosColl) {
 //     let todos = todosColl.find();
@@ -50,4 +50,4 @@ TransactionsDB.observeLists = (cb) => {
 //   return ddpClient.call('Lists.remove', [listId]);
 // };
 
-module.exports = TransactionsDB;
+module.exports = ItemsDB;

@@ -10,7 +10,7 @@ import React, {
   Image
 } from 'react-native';
 
-import TransactionsDB from '../../config/db/transactions.js';
+import ItemsDB from '../../config/db/items.js';
 import icon from '../../images/fa-cog/fa-cog.png';
 import Button from 'apsl-react-native-button';
 import Onboarding from '../onboarding/Onboarding.js';
@@ -18,16 +18,16 @@ import Onboarding from '../onboarding/Onboarding.js';
 module.exports = React.createClass({
   getInitialState: () => {
     return {
-      transactions: []
+      items: []
     };
   },
 
   componentWillMount() {
-    TransactionsDB.subscribeToLists()
+    ItemsDB.subscribeToLists()
       .then(() => {
-        TransactionsDB.observeLists((transactions) => {
+        ItemsDB.observeLists((items) => {
           this.setState({
-            transactions: transactions
+            items: items
           });
         });
       })
@@ -36,10 +36,10 @@ module.exports = React.createClass({
       });
   },
 
-  getDataSource(transactions){
-    transactions = transactions || [];
+  getDataSource(items){
+    items = items || [];
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    return ds.cloneWithRows(transactions);
+    return ds.cloneWithRows(items);
   },
 
 
@@ -73,7 +73,7 @@ module.exports = React.createClass({
       <View>
         <Button onPress={this.handlePress}>Log out</Button>
         <ListView
-          dataSource={this.getDataSource(this.state.transactions)}
+          dataSource={this.getDataSource(this.state.items)}
           renderRow={this.renderRow}
           />
       </View>
