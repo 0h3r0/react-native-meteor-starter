@@ -184,6 +184,7 @@ export default React.createClass({
         initialRoute={initialRoute}
         renderScene={this.renderScene}
         configureScene={this.configureScene}
+        sceneStyle={{paddingTop: 200}}
       />
     );
   }
