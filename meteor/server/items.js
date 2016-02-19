@@ -18,14 +18,14 @@ Items.attachSchema(new SimpleSchema({
   },
   isChecked: {
     type: Boolean,
-    autoValue: () => {
+    autoValue: function() {
       if (this.isInsert)
         return false;
     }
   },
   createdAt: {
     type: Date,
-    autoValue: () => {
+    autoValue: function() {
       if (this.isInsert)
         return new Date();
     }

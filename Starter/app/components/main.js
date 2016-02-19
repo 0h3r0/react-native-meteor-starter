@@ -136,7 +136,8 @@ export default React.createClass({
     return (
       <View style={styles.container}>
 
-        {this.state.user ?
+        {/* Use title to duckType statusbar or not */}
+        {route.title ?
         <NavigationBar
           title={title}
           leftButton={leftButton}

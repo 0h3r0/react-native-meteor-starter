@@ -1,14 +1,14 @@
 let ddpClient = require('./lib/ddpClient');
 
-let ItemsDB = {};
+let MessagesDB = {};
 
-ItemsDB.subscribeToLists = () => {
-  return ddpClient.subscribe('items', [])
+MessagesDB.subscribeToLists = () => {
+  return ddpClient.subscribe('messages', [])
 };
 
-ItemsDB.observeLists = (cb) => {
+MessagesDB.observeLists = (cb) => {
   let observer = ddpClient.connection.collections.observe(() => {
-    let collection = ddpClient.connection.collections.bills;
+    let collection = ddpClient.connection.collections.messages;
     if (collection)
       return collection.find();
   });
@@ -18,4 +18,4 @@ ItemsDB.observeLists = (cb) => {
   });
 };
 
-module.exports = ItemsDB;
+module.exports = MessagesDB;
