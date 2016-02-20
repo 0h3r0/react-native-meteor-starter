@@ -14,6 +14,8 @@ const WINDOW_WIDTH = Dimensions.get('window').width;
 import ChatForm from './ChatForm.js';
 import MessagesDB from '../../config/db/messages.js';
 
+import KeyboardSpacer from './KeyboardSpacer.js';
+
 module.exports = React.createClass({
   getInitialState() {
     return {
@@ -48,9 +50,10 @@ module.exports = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container}>
+        <ScrollView>
           {this.state.messages.map( this.renderMessage )}
         </ScrollView>
+        <KeyboardSpacer />
         <ChatForm />
       </View>
     )
