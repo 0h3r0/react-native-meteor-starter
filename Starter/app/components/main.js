@@ -10,6 +10,9 @@ import NavigationBar from 'react-native-navbar';
 import NoConnection from './NoConnection.js';
 import Onboarding from './onboarding/Onboarding.js';
 
+const SideMenu = require('react-native-side-menu');
+import Menu from './Menu.js';
+
 import ddpClient from '../config/db/lib/ddpClient';
 import Accounts from '../config/db/accounts';
 
@@ -27,7 +30,8 @@ export default React.createClass({
       connecting: false,
       connectionFailed: false,
       showOnboarding: true,
-      user: null
+      user: null,
+      menuOpen: false
     };
   },
 
@@ -150,6 +154,7 @@ export default React.createClass({
           user={this.state.user}
           handleLoggedIn={this.handleLoggedIn}
           handleLoggedOut={this.handleLoggedOut}
+          menuOpen={this.state.menuOpen}
           {...route.passProps}
           />
       </View>
@@ -174,18 +179,29 @@ export default React.createClass({
     let initialRoute = this.state.user ?
       {
         component: Home,
-        title: "Home"
+        title: "Home",
+        leftButton: {
+          title: 'Menu',
+          handler: () => {
+            this.setState({
+              menuOpen: !this.state.menuOpen
+            })
+          }
+        }
       } : {
         component: Onboarding
       }
 
+    const menu = <Menu navigator={navigator}/>;
     return (
-      <Navigator
-        initialRoute={initialRoute}
-        renderScene={this.renderScene}
-        configureScene={this.configureScene}
-        sceneStyle={{paddingTop: 200}}
-      />
+      <SideMenu menu={menu} isOpen={this.props.menuOpen}>
+        <Navigator
+          initialRoute={initialRoute}
+          renderScene={this.renderScene}
+          configureScene={this.configureScene}
+          sceneStyle={{paddingTop: 0}}
+        />
+      </SideMenu>
     );
   }
 });

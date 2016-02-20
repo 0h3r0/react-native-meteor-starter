@@ -5,11 +5,16 @@ import React, {
   View,
   StyleSheet,
   Text,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native';
+
+const WINDOW_WIDTH = Dimensions.get('window').width;
 
 import ChatForm from './ChatForm.js';
 import MessagesDB from '../../config/db/messages.js';
+
+import KeyboardSpacer from './KeyboardSpacer.js';
 
 module.exports = React.createClass({
   getInitialState() {
@@ -33,8 +38,10 @@ module.exports = React.createClass({
   },
 
   renderMessage(message) {
+    console.log(message);
+    console.log(this.props.user._id);
     return (
-      <View style={styles.message} key={message._id}>
+      <View style={[styles.message, message.owner === this.props.user._id ? styles.myMessage : null]} key={message._id}>
         <Text>{message.content}</Text>
       </View>
     )
@@ -42,9 +49,13 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        {this.state.messages.map( this.renderMessage )}
-      </ScrollView>
+      <View style={styles.container}>
+        <ScrollView>
+          {this.state.messages.map( this.renderMessage )}
+        </ScrollView>
+        <KeyboardSpacer />
+        <ChatForm />
+      </View>
     )
   }
 })
@@ -56,6 +67,15 @@ const styles = StyleSheet.create({
   },
   message: {
     padding: 20,
-    marginTop: 100
+    marginTop: 10,
+    padding: 20,
+    backgroundColor: '#eee',
+    margin: 10,
+    borderRadius: 5,
+    maxWidth: WINDOW_WIDTH * .8
+  },
+  myMessage: {
+    right: 0,
+    backgroundColor: 'blue'
   }
 })
