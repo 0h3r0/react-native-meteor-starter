@@ -10,6 +10,13 @@ Messages.attachSchema(new SimpleSchema({
       if (this.isInsert)
         return new Date()
     }
+  },
+  owner: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    autoValue: function() {
+      console.log(this);
+    }
   }
 }));
 

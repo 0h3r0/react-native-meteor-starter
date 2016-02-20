@@ -22,11 +22,7 @@ export default React.createClass({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
-    position: 'relative',
-    bottom: 0,
-    left: 0,
-    right: 0
+    height: 40
   },
   textInput: {
     height: 40,
