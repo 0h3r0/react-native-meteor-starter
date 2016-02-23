@@ -3,3 +3,9 @@ Meteor.methods({
     return Accounts.createUser({email: email, password: password});
   }
 });
+
+Meteor.methods({
+  'testUserId': ()=> {
+    console.log(this.userId);
+  }
+})

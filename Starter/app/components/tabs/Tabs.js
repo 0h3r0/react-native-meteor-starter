@@ -15,7 +15,7 @@ export default React.createClass({
   render(){
     return (
       <ScrollableTabView>
-        <Items tabLabel="Payments" handleLoggedOut={this.props.handleLoggedOut} navigator={this.props.navigator} />
+        <Items tabLabel="Payments" handleLogOut={this.props.handleLogOut} navigator={this.props.navigator} />
         <View tabLabel="text"><Text>bla</Text></View>
       </ScrollableTabView>
     )

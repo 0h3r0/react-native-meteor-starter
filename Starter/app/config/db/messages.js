@@ -2,11 +2,11 @@ let ddpClient = require('./lib/ddpClient');
 
 let MessagesDB = {};
 
-MessagesDB.subscribeToLists = () => {
-  return ddpClient.subscribe('messages', [])
+MessagesDB.subscribe = (skip, limit) => {
+  return ddpClient.subscribe('messages', [skip, limit])
 };
 
-MessagesDB.observeLists = (cb) => {
+MessagesDB.observe = (cb) => {
   let observer = ddpClient.connection.collections.observe(() => {
     let collection = ddpClient.connection.collections.messages;
     if (collection)
@@ -17,5 +17,13 @@ MessagesDB.observeLists = (cb) => {
     cb(results);
   });
 };
+
+MessagesDB.insert = (message) => {
+  return ddpClient.call('Messages.insert', [message])
+};
+
+MessagesDB.messageCount = () => {
+  return ddpClient.call('Messages.count');
+}
 
 module.exports = MessagesDB;

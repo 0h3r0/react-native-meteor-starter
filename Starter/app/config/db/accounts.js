@@ -68,6 +68,7 @@ Accounts.signInWithToken = () => {
     // Check if we have a loginToken in persistent client storage
     AsyncStorage.getItem('loginToken')
       .then((token) => {
+        console.log(token);
         if (token) {
           login({resume: token}, resolve, reject);
         } else {
