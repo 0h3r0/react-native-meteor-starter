@@ -14,19 +14,20 @@ Messages.attachSchema(new SimpleSchema({
   owner: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
-    autoValue: function() {
-      console.log(this);
-    }
+    optional: true
   }
 }));
 
 Meteor.methods({
-  'Messages.insert': (item) => {
-    return Messages.insert(item);
+  'Messages.insert': (message) => {
+    console.log(this.userId);
+    message.owner = this.userId;
+    return Messages.insert(message);
   }
 });
 
 Meteor.publish("messages", () => {
+  console.log(this.userId);
   return Messages.find({}, {
     limit: 10
   });

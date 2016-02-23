@@ -18,4 +18,8 @@ MessagesDB.observeLists = (cb) => {
   });
 };
 
+MessagesDB.insert = (message) => {
+  return ddpClient.call('Messages.insert', [message])
+};
+
 module.exports = MessagesDB;

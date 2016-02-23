@@ -1,6 +1,7 @@
 import {Platform} from 'react-native';
 
 getEnvironmentName = () => {
+  console.log(process)
   // Logic for figuring out platform
 
   return 'dev';
