@@ -30,7 +30,7 @@ export default React.createClass({
       connecting: false,
       connectionFailed: false,
       showOnboarding: true,
-      user: null,
+      user: {},
       menuOpen: false
     };
   },
@@ -194,7 +194,7 @@ export default React.createClass({
 
     const menu = <Menu navigator={navigator}/>;
     return (
-      <SideMenu menu={menu} isOpen={this.props.menuOpen}>
+      <SideMenu menu={menu} isOpen={this.state.menuOpen}>
         <Navigator
           initialRoute={initialRoute}
           renderScene={this.renderScene}
