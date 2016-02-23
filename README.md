@@ -68,6 +68,7 @@ Our 10 cents:
 * Do not use arrow functions `() => ` to define `Meteor.publish` functions or `Meteor.methods({})`, otherwise `this` will not behave as expected
 
 ### Todos
+- [ ] Create profile page when click on chat image
 - [ ] Improve 'Load new messages' loading experience
 - [ ] Globalize some styles e.g. colors
 - [ ] Chat doesn't scroll down when you receive a new message
