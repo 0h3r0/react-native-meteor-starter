@@ -67,5 +67,10 @@ Our 10 cents:
 * React Native is a way less smoothe developer experience than Meteor. Be prepared for lots of red angry error screens
 * Do not use arrow functions `() => ` to define `Meteor.publish` functions or `Meteor.methods({})`, otherwise `this` will not behave as expected
 
+### Todos
+- [ ] Improve 'Load new messages' loading experience
+- [ ] Globalize some styles e.g. colors
+- [ ] Chat doesn't scroll down when you receive a new message
+
 ### Contributors
 This repo was inspired by and relies heavily on the code from [@spencercarli](https://github.com/spencercarli/)'s awesome [Meteor Todos](https://github.com/spencercarli/meteor-todos-react-native)
