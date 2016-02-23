@@ -38,17 +38,18 @@ let isDocOwner = (_id, userId) => {
 }
 
 Meteor.methods({
-  'Items.insert': (item) => {
+  'Items.insert': function(item) {
+    console.log(this.userId);
     return Items.insert(item);
   },
-  'Items.update': (_id, modifier) => {
+  'Items.update': function(_id, modifier) {
 
     if (isDocOwner(_id, this.userId))
       throw new Meteor.Error(403, "Cannot edit other users' docs");
 
     return Items.update(_id, modified);
   },
-  'Items.remove': (_id) => {
+  'Items.remove': function(_id) {
     if (isDocOwner(_id, this.userId))
       throw new Meteor.Error(403, "Cannot delete other users' docs");
 
@@ -56,6 +57,6 @@ Meteor.methods({
   }
 });
 
-Meteor.publish("items", () => {
+Meteor.publish("items", function() {
   return Items.find({owner: this.userId});
 })

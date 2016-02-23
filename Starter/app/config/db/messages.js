@@ -2,7 +2,7 @@ let ddpClient = require('./lib/ddpClient');
 
 let MessagesDB = {};
 
-MessagesDB.subscribeToLists = () => {
+MessagesDB.subscribe = () => {
   return ddpClient.subscribe('messages', [])
 };
 

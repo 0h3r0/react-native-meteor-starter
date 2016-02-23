@@ -40,7 +40,7 @@ var GiftedMessengerExample = React.createClass({
       this.setState({user: null});
     });
 
-    MessagesDB.subscribeToLists()
+    MessagesDB.subscribe()
       .then(() => {
         MessagesDB.observeLists((messages) => {
           console.log(messages);

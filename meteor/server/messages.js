@@ -19,19 +19,16 @@ Messages.attachSchema(new SimpleSchema({
 }));
 
 Meteor.methods({
-  'Messages.insert': (message) => {
-    console.log(this.userId);
+  'Messages.insert': function(message) {
     message.owner = this.userId;
     return Messages.insert(message);
   }
 });
 
-Meteor.publish("messages", () => {
-  console.log(this.userId);
-  return Messages.find({}, {
-    limit: 10
-  });
+Meteor.publish('messages', function() {
+  return Messages.find({}, {limit: 10});
 })
+
 
 const fixtures = [
   {

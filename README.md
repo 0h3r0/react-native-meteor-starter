@@ -63,5 +63,9 @@ Our 10 cents:
 * If the user experience has to be really slick, use React Native. If not (e.g. B2B apps) Meteoric is probably ok.
 * Prototyping quickly -> Meteoric + Cordova. Building for the long haul -> React Native
 
+### Gotchas
+* React Native is a way less smoothe developer experience than Meteor. Be prepared for lots of red angry error screens
+* Do not use arrow functions `() => ` to define `Meteor.publish` functions or `Meteor.methods({})`, otherwise `this` will not behave as expected
+
 ### Contributors
 This repo was inspired by and relies heavily on the code from [@spencercarli](https://github.com/spencercarli/)'s awesome [Meteor Todos](https://github.com/spencercarli/meteor-todos-react-native)
