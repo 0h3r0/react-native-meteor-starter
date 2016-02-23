@@ -12,60 +12,59 @@ var {
 
 var GiftedMessenger = require('react-native-gifted-messenger');
 var Communications = require('react-native-communications');
+import NoData from '../shared/NoData.js';
 
 import MessagesDB from '../../config/db/messages.js';
 import Accounts from '../../config/db/accounts.js';
+
+let MESSAGES_INTERVAL = 10;
 
 var GiftedMessengerExample = React.createClass({
   getInitialState() {
     return {
       messages: [],
-      user: {_id: 'asdfasdf'}
+      totalMessageCount: 0
     }
   },
   componentWillMount() {
-    Accounts.userId.then((userId) => {
-      if (userId) {
-        this.setState({user: {_id: userId}});
-      }
-    });
-
-    Accounts.emitter.on('loggedIn', (userId) => {
-      if (userId) {
-        this.setState({user: {_id: userId}});
-      }
-    });
-
-    Accounts.emitter.on('loggedOut', () => {
-      this.setState({user: null});
-    });
-
-    MessagesDB.subscribe()
+    console.log('will mount');
+    MessagesDB.subscribe(0, MESSAGES_INTERVAL)
       .then(() => {
-        MessagesDB.observeLists((messages) => {
+        MessagesDB.observe((messages) => {
           console.log(messages);
           this.setState({
             messages: messages
           });
         });
       })
+      .then(() => {
+        return MessagesDB.messageCount();
+      })
+      .then((r) => {
+        console.log(r);
+        this.setState({
+          totalMessageCount: r
+        })
+      })
       .catch((err) => {
         console.log('Error: ', err);
-      });
+      })
   },
   getMessages() {
-    // return [{text: 'Are you building a chat app?', name: 'React-Native', image: {uri: 'https://facebook.github.io/react/img/logo_og.png'}, position: 'left', date: new Date(2015, 10, 16, 19, 0)}]
     let messages = this.state.messages;
-    messages = messages.map((message) => {
-      return {
-        text: message.content,
-        name: "Ben",
-        image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-        position: message.owner === this.props.user._id ? 'right' : 'left',
-        date: message.createdAt
-      }
-    })
-    console.log(messages);
+    messages = messages
+      .sort((a, b) => {
+        return a.createdAt - b.createdAt;
+      })
+      .map((message) => {
+        return {
+          text: message.content,
+          name: "Ben",
+          image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
+          position: message.owner === this.props.user._id ? 'right' : 'left',
+          date: message.createdAt
+        }
+      })
     return messages;
   },
 
@@ -78,8 +77,6 @@ var GiftedMessengerExample = React.createClass({
     // Your logic here
     // Send message.text to your server
 
-
-
     // this._GiftedMessenger.setMessageStatus('Sent', rowID);
     // this._GiftedMessenger.setMessageStatus('Seen', rowID);
     // this._GiftedMessenger.setMessageStatus('Custom label status', rowID);
@@ -89,51 +86,34 @@ var GiftedMessengerExample = React.createClass({
   // @oldestMessage is the oldest message already added to the list
   onLoadEarlierMessages(oldestMessage = {}, callback = () => {}) {
 
+    MessagesDB.subscribe(this.state.messages.length, MESSAGES_INTERVAL)
+      .then(()=> {
+        callback([], false);
+      })
+
     // Your logic here
     // Eg: Retrieve old messages from your server
 
     // newest messages have to be at the begining of the array
-    var earlierMessages = [
-      {
-        text: 'This is a touchable phone number 0606060606 parsed by taskrabbit/react-native-parsed-text',
-        name: 'Developer',
-        image: null,
-        position: 'right',
-        date: new Date(2014, 0, 1, 20, 0),
-      }, {
-        text: 'React Native enables you to build world-class application experiences on native platforms using a consistent developer experience based on JavaScript and React. https://github.com/facebook/react-native',
-        name: 'React-Native',
-        image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-        position: 'left',
-        date: new Date(2013, 0, 1, 12, 0),
-      },
-    ];
-
-    setTimeout(() => {
-      callback(earlierMessages, false); // when second parameter is true, the "Load earlier messages" button will be hidden
-    }, 1000);
-  },
-
-  handleReceive(message = {}) {
-    this._GiftedMessenger.appendMessage(message);
-  },
-
-  onErrorButtonPress(message = {}, rowID = null) {
-    // Your logic here
-    // Eg: Re-send the message to your server
-
-    setTimeout(() => {
-      // will set the message to a custom status 'Sent' (you can replace 'Sent' by what you want - it will be displayed under the row)
-      this._GiftedMessenger.setMessageStatus('Sent', rowID);
-      setTimeout(() => {
-        // will set the message to a custom status 'Seen' (you can replace 'Seen' by what you want - it will be displayed under the row)
-        this._GiftedMessenger.setMessageStatus('Seen', rowID);
-        setTimeout(() => {
-          // append an answer
-          this.handleReceive({text: 'I saw your message', name: 'React-Native', image: {uri: 'https://facebook.github.io/react/img/logo_og.png'}, position: 'left', date: new Date()});
-        }, 500);
-      }, 1000);
-    }, 500);
+    // var earlierMessages = [
+    //   {
+    //     text: 'This is a touchable phone number 0606060606 parsed by taskrabbit/react-native-parsed-text',
+    //     name: 'Developer',
+    //     image: null,
+    //     position: 'right',
+    //     date: new Date(2014, 0, 1, 20, 0),
+    //   }, {
+    //     text: 'React Native enables you to build world-class application experiences on native platforms using a consistent developer experience based on JavaScript and React. https://github.com/facebook/react-native',
+    //     name: 'React-Native',
+    //     image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
+    //     position: 'left',
+    //     date: new Date(2013, 0, 1, 12, 0),
+    //   },
+    // ];
+    //
+    // setTimeout(() => {
+    //   callback([earlierMessages], false); // when second parameter is true, the "Load earlier messages" button will be hidden
+    // }, 1000);
   },
 
   // will be triggered when the Image of a row is touched
@@ -143,6 +123,9 @@ var GiftedMessengerExample = React.createClass({
   },
 
   render() {
+    if (this.state.messages.length == 0) {
+      return <NoData title="No messages yet." />
+    }
     return (
       <GiftedMessenger
         ref={(c) => this._GiftedMessenger = c}
@@ -159,7 +142,8 @@ var GiftedMessengerExample = React.createClass({
         handleSend={this.handleSend}
         onErrorButtonPress={this.onErrorButtonPress}
         maxHeight={Dimensions.get('window').height - navBarHeight - statusBarHeight}
-        loadEarlierMessagesButton={true}
+        loadEarlierMessagesButton={ this.state.messages.length < this.state.totalMessageCount}
+        loadEarlierMessagesButtonText={`Load earlier messages (${this.state.messages.length}/${this.state.totalMessageCount})`}
         onLoadEarlierMessages={this.onLoadEarlierMessages}
 
         senderName='Developer'

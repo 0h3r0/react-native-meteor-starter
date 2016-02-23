@@ -22,11 +22,14 @@ Meteor.methods({
   'Messages.insert': function(message) {
     message.owner = this.userId;
     return Messages.insert(message);
+  },
+  'Messages.count': function() {
+    return Messages.find({}).count();
   }
 });
 
-Meteor.publish('messages', function() {
-  return Messages.find({}, {limit: 10});
+Meteor.publish('messages', function(skip, limit) {
+  return Messages.find({}, {skip: skip, limit: limit, sort: {createdAt: -1}});
 })
 
 
