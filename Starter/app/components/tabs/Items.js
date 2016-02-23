@@ -60,7 +60,7 @@ module.exports = React.createClass({
     )
   },
   handlePress() {
-    this.props.handleLoggedOut();
+    this.props.handleLogOut();
     this.props.navigator.push({
       component: Onboarding
     })

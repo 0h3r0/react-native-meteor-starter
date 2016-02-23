@@ -14,14 +14,32 @@ var GiftedMessenger = require('react-native-gifted-messenger');
 var Communications = require('react-native-communications');
 
 import MessagesDB from '../../config/db/messages.js';
+import Accounts from '../../config/db/accounts.js';
 
 var GiftedMessengerExample = React.createClass({
   getInitialState() {
     return {
-      messages: []
+      messages: [],
+      user: {_id: 'asdfasdf'}
     }
   },
   componentWillMount() {
+    Accounts.userId.then((userId) => {
+      if (userId) {
+        this.setState({user: {_id: userId}});
+      }
+    });
+
+    Accounts.emitter.on('loggedIn', (userId) => {
+      if (userId) {
+        this.setState({user: {_id: userId}});
+      }
+    });
+
+    Accounts.emitter.on('loggedOut', () => {
+      this.setState({user: null});
+    });
+
     MessagesDB.subscribeToLists()
       .then(() => {
         MessagesDB.observeLists((messages) => {

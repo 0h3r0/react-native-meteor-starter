@@ -30,7 +30,7 @@ export default React.createClass({
       connecting: false,
       connectionFailed: false,
       showOnboarding: true,
-      user: {},
+      user: null,
       menuOpen: false
     };
   },
@@ -100,8 +100,11 @@ export default React.createClass({
       this.setState({user: {_id: userId}});
     }
   },
-  handleLoggedOut() {
-    this.setState({user: null})
+  handleLogOut() {
+    Accounts.signOut().then(() => {
+      this.setState({user: null})
+    }
+  )
   },
 
   componentWillUnmount() {
@@ -153,7 +156,7 @@ export default React.createClass({
           navigator={navigator}
           user={this.state.user}
           handleLoggedIn={this.handleLoggedIn}
-          handleLoggedOut={this.handleLoggedOut}
+          handleLogOut={this.handleLogOut}
           menuOpen={this.state.menuOpen}
           {...route.passProps}
           />
@@ -192,7 +195,7 @@ export default React.createClass({
         component: Onboarding
       }
 
-    const menu = <Menu navigator={navigator}/>;
+    const menu = <Menu navigator={navigator} handleLogOut={this.handleLogOut} />;
     return (
       <SideMenu menu={menu} isOpen={this.state.menuOpen}>
         <Navigator

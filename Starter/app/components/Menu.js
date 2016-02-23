@@ -10,12 +10,15 @@ import React, {
 } from 'react-native';
 
 const window = Dimensions.get('window');
+import Button from 'apsl-react-native-button';
 
 export default React.createClass({
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text>Bla</Text>
+        <Button onPress={this.props.handleLogOut}>
+          Log out
+        </Button>
       </ScrollView>
     )
   }
