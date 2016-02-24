@@ -5,7 +5,7 @@ import React, {
   Navigator,
 } from 'react-native';
 
-import Home from './home/home.js';
+import Home from './home/Home.js';
 import NavigationBar from 'react-native-navbar';
 import NoConnection from './NoConnection.js';
 import Onboarding from './onboarding/Onboarding.js';
@@ -143,7 +143,7 @@ export default React.createClass({
 
     let rightButton = undefined;
     if (route.rightButton) {
-      rightButton = React.cloneElement(route.rightButton, {navigator: navigator});
+      rightButton = route.rightButton
     }
 
     return (

@@ -3,6 +3,7 @@
 import React, { StyleSheet, Text, View,Image} from 'react-native';
 
 import SwipeCards from 'react-native-swipe-cards';
+import MatchesDB from '../../config/db/matches.js';
 
 let Card = React.createClass({
   render() {
@@ -46,10 +47,10 @@ export default React.createClass({
     }
   },
   handleYup (card) {
-    console.log("yup")
+    return MatchesDB.upvote(card.backgroundColor, true);
   },
   handleNope (card) {
-    console.log("nope")
+    return MatchesDB.upvote(card.backgroundColor, false);
   },
   cardRemoved (index) {
     console.log(`The index is ${index}`);

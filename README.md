@@ -71,6 +71,10 @@ Our 10 cents:
 - [ ] Chat doesn't scroll down when you receive a new message
 - [ ] Icon font
 - [ ] Ensure ES6 throughout
+- [ ] Fix menu
+- [ ] Visualize matches data
+- [ ] Fix tabs styling
+- [ ] Implement basic CRUD
 
 
 ### Contributors
