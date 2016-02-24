@@ -18,7 +18,7 @@ let NoMoreCards = React.createClass({
   render() {
     return (
       <View style={styles.noMoreCards}>
-        <Text>NO MORE CARDS!!!</Text>
+        <Text>No more cards</Text>
       </View>
     )
   }
