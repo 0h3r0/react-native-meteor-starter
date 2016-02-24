@@ -27,11 +27,9 @@ var GiftedMessengerExample = React.createClass({
     }
   },
   componentWillMount() {
-    console.log('will mount');
     MessagesDB.subscribe(0, MESSAGES_INTERVAL)
       .then(() => {
         MessagesDB.observe((messages) => {
-          console.log(messages);
           this.setState({
             messages: messages
           });
@@ -41,7 +39,6 @@ var GiftedMessengerExample = React.createClass({
         return MessagesDB.messageCount();
       })
       .then((r) => {
-        console.log(r);
         this.setState({
           totalMessageCount: r
         })

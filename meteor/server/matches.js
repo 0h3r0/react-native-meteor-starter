@@ -30,7 +30,7 @@ Meteor.methods({
     return Matches.update(_id, modifier);
   },
   'Matches.count': function() {
-    return Matches.find({}).count();
+    return Matches.find().count();
   }
 });
 

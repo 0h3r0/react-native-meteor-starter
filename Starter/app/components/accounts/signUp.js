@@ -11,7 +11,7 @@ import {
 import styles from './_accountsStyles';
 
 import Accounts from '../../config/db/accounts';
-import Home from '../home/home.js';
+import Home from '../home/Home.js';
 
 export default React.createClass({
   // Configuration

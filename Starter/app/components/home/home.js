@@ -14,12 +14,18 @@ import React, {
 import Accounts from '../../config/db/accounts.js';
 import Onboarding from '../onboarding/Onboarding.js';
 
+// Tabs
 import Tabs from '../tabs/Tabs.js';
-import Tinder from '../tinder/Tinder.js';
+
+// Chat
 import Chat from '../chat/Chat.js';
 
+// Tinder
+import Tinder from '../tinder/Tinder.js';
+import Matches from '../tinder/Matches.js';
+
 export default React.createClass({
-  handlePress(route) {
+  handlePress(route, rightButton) {
     let nav = this.props.navigator;
     nav.push({...route,
       sceneConfig: {...Navigator.SceneConfigs.FloatFromRight, gestures: false},
@@ -31,13 +37,29 @@ export default React.createClass({
     })
   },
   getInitialState: function() {
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    let nav = this.props.navigator;
     return {
       dataSource: ds.cloneWithRows([
         {
           title: "Tinder",
           description: "Like dating, with colors",
-          component: Tinder
+          component: Tinder,
+          rightButton: {
+            title: "Matches",
+            handler: () => {
+              nav.push({
+                title: "Matches",
+                component: Matches,
+                leftButton: {
+                  title: 'Back',
+                  handler: () => nav.pop(),
+                  gestures: false
+                }
+              })
+            },
+            gestures:false
+          }
         },
         {
           title: "Tabs",
@@ -52,9 +74,9 @@ export default React.createClass({
       ]),
     };
   },
-  renderRow(route) {
+  renderRow(route, rightButton) {
     return (
-      <TouchableOpacity ref={route.title} style={styles.row} onPress={() => this.handlePress(route) }>
+      <TouchableOpacity ref={route.title} style={styles.row} onPress={() => this.handlePress(route, rightButton) }>
         <Image
           source={{uri: "http://loremflickr.com/g/320/240/paris"}}
           style={styles.thumbnail}

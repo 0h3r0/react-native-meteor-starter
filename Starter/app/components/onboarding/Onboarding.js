@@ -11,7 +11,7 @@ import OnboardingPage from './OnboardingPage.js';
 import SimpleTabBar from './SimpleTabBar.js';
 import Button from 'apsl-react-native-button';
 
-import Home from '../home/home.js';
+import Home from '../home/Home.js';
 
 import Accounts from '../../config/db/accounts.js';
 
