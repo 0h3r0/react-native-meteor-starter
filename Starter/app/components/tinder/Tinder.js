@@ -2,13 +2,23 @@
 
 import React, { StyleSheet, Text, View,Image} from 'react-native';
 
-import TinderCards from './TinderCards.js';
+import SwipeCards from 'react-native-swipe-cards';
 
 let Card = React.createClass({
   render() {
     return (
       <View style={[styles.card, {backgroundColor: this.props.backgroundColor}]}>
         <Text>{this.props.text}</Text>
+      </View>
+    )
+  }
+})
+
+let NoMoreCards = React.createClass({
+  render() {
+    return (
+      <View style={styles.noMoreCards}>
+        <Text>NO MORE CARDS!!!</Text>
       </View>
     )
   }
@@ -50,7 +60,6 @@ export default React.createClass({
       console.log(`There are only ${this.state.cards.length - index - 1} cards left.`);
 
       if (!this.state.outOfCards) {
-
         console.log(`Adding ${Cards2.length} more cards`)
 
         this.setState({
@@ -64,7 +73,19 @@ export default React.createClass({
   },
   render() {
     return (
-      <TinderCards renderCard={(cardData) => <Card {...cardData} />} cards={this.state.cards} handleYup={this.handleYup} handleNope={this.handleNope} cardRemoved={this.cardRemoved} />
+      <SwipeCards
+        cards={this.state.cards}
+        loop={false}
+
+        renderCard={(cardData) => <Card {...cardData} />}
+        renderNoMoreCards={() => <NoMoreCards />}
+        showYup={true}
+        showNope={true}
+
+        handleYup={this.handleYup}
+        handleNope={this.handleNope}
+        cardRemoved={this.cardRemoved}
+      />
     )
   }
 })
@@ -77,5 +98,10 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     backgroundColor: 'grey'
+  },
+  noMoreCards: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })
