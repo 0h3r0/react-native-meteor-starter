@@ -5,11 +5,8 @@ A boilerplate for [Meteor](http://meteor.com) and [React Native](https://faceboo
 * **Onboarding** - swipe through welcome panels
 * **Accounts** - create accounts & sign up
 * **CRUD** - add, update, items to a collection
-
-
-### Christmas list
-* Fonts
-* Material design (?)
+* [**Tinder**](https://github.com/meteor-factory/react-native-tinder-swipe-cards) - swipe happily through colors
+* [**Messaging**](https://github.com/FaridSafi/react-native-gifted-messenger/) - Actually, it's more like a forum, but youget the point
 
 ### Quick Start
 ##### 0. Prerequisites
@@ -72,6 +69,9 @@ Our 10 cents:
 - [ ] Improve 'Load new messages' loading experience
 - [ ] Globalize some styles e.g. colors
 - [ ] Chat doesn't scroll down when you receive a new message
+- [ ] Icon font
+- [ ] Ensure ES6 throughout
+
 
 ### Contributors
 This repo was inspired by and relies heavily on the code from [@spencercarli](https://github.com/spencercarli/)'s awesome [Meteor Todos](https://github.com/spencercarli/meteor-todos-react-native)
