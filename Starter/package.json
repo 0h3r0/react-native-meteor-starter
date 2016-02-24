@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "scripts": {
-      "start": "$NVM_BIN/react-native start"
-    },
+    "start": "$NVM_BIN/react-native start",
     "ios": "open ios/Starter.xcodeproj && REACT_EDITOR=atom npm start"
   },
   "dependencies": {
@@ -17,6 +15,7 @@
     "react-native-gifted-messenger": "0.0.20",
     "react-native-navbar": "^1.2.1",
     "react-native-scrollable-tab-view": "^0.3.5",
-    "react-native-side-menu": "^0.18.0"
+    "react-native-side-menu": "^0.18.0",
+    "react-native-swipe-cards": "^0.0.3"
   }
 }

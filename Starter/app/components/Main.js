@@ -54,14 +54,20 @@ export default React.createClass({
           loaded: true,
           connectionFailed: true
         });
+        return err;
       })
-      .then(() => {
+      .then((res) => {
+        // Res will be true if no error
+        if (res === true) {
+          this.setState({
+            connectionFailed: false
+          })
+        }
         return Accounts.signInWithToken();
       })
       .then((res) => {
         return this.setState({
-          loaded: true,
-          connectionFailed: false
+          loaded: true
         });
       })
       .catch((err) => {
