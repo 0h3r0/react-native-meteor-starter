@@ -4,6 +4,9 @@
 - prop types
 - cycle (Bool)
 - load more cards
+- renderYup
+- renderNope
+
 ```
 reduceCards(remainingCards)=> {
   if

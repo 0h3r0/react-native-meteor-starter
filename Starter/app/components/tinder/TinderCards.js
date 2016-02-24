@@ -21,6 +21,11 @@ export default class Tinder extends Component {
     let currentCardIdx = this.props.cards.indexOf(this.state.card);
     let newIdx = currentCardIdx + 1;
 
+    console.log(currentCardIdx)
+    console.log(newIdx)
+    console.log(this.props.cards.length)
+    console.log(newIdx > this.props.cards.length - 1 ? 0 : newIdx)
+
     this.setState({
       card: this.props.cards[newIdx > this.props.cards.length - 1 ? 0 : newIdx]
     });
@@ -67,7 +72,9 @@ export default class Tinder extends Component {
             ? this.props.handleYup(this.state.card)
             : this.props.handleNope(this.state.card)
 
-          this.props.cardRemoved ? this.props.cardRemoved(this.props.cards.indexOf(this.state.card)) : null;
+          this.props.cardRemoved
+            ? this.props.cardRemoved(this.props.cards.indexOf(this.state.card))
+            : null
 
           Animated.decay(this.state.pan, {
             velocity: {x: velocity, y: vy},
