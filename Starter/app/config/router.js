@@ -4,6 +4,8 @@ import React, {
   StyleSheet,
 } from 'react-native';
 
+import MenuEmitter from '../config/emitters.js';
+
 let Router = {
   getHome(props) {
     return {
@@ -17,7 +19,7 @@ let Router = {
       renderLeftButton(navigator) {
         return (
           <TouchableOpacity onPress={() => {
-              props.toggleMenu()
+              MenuEmitter.emit('toggleMenu');
             }}>
             <Text style={[styles.buttonText, styles.buttonLeft]}>Menu</Text>
           </TouchableOpacity>

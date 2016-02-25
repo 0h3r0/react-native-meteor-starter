@@ -15,6 +15,7 @@ import Accounts from '../config/db/accounts';
 
 import ExNavigator from '@exponent/react-native-navigator';
 import Router from '../config/router.js';
+import MenuEmitter from '../config/emitters.js';
 
 // Polyfill the process functionality needed for minimongo-cache
 global.process = require("../config/db/lib/process.polyfill");
@@ -91,6 +92,10 @@ export default React.createClass({
 
   // Component Lifecycle
   componentWillMount() {
+    MenuEmitter.on('toggleMenu', () => {
+      this.setState({menuOpen: true})
+    })
+
     this.attemptConnection();
 
     // Handling user session
@@ -132,14 +137,7 @@ export default React.createClass({
 
     const menu = <Menu handleLogOut={this.handleLogOut} />;
     let initialRoute = this.state.user
-        ? Router.getHome({
-          user: this.state.user,
-          toggleMenu: () => {
-            this.setState({
-              menuOpen: !this.state.menuOpen
-            })
-          }
-        })
+        ? Router.getHome({user: this.state.user})
         : Router.getOnboarding()
     return (
       <SideMenu menu={menu} isOpen={this.state.menuOpen}>
