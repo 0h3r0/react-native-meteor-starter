@@ -14,10 +14,16 @@ import Items from './Items.js';
 export default React.createClass({
   render(){
     return (
-      <ScrollableTabView>
+      <ScrollableTabView style={styles.container}>
         <Items tabLabel="Payments" handleLogOut={this.props.handleLogOut} navigator={this.props.navigator} />
         <View tabLabel="text"><Text>bla</Text></View>
       </ScrollableTabView>
     )
+  }
+})
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#F5FCFF"
   }
 })

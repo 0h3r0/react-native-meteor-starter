@@ -7,6 +7,7 @@ import React, {
   ScrollView,
   StyleSheet,
   Dimensions,
+  TouchableOpacity
 } from 'react-native';
 
 const window = Dimensions.get('window');
@@ -16,9 +17,10 @@ export default React.createClass({
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Button onPress={this.props.handleLogOut}>
-          Log out
-        </Button>
+        <Text style={styles.title}>TinderChatTabs</Text>
+        <TouchableOpacity style={styles.button} onPress={this.props.handleLogOut}>
+          <Text style={styles.buttonText}>Log out</Text>
+        </TouchableOpacity>
       </ScrollView>
     )
   }
@@ -26,10 +28,24 @@ export default React.createClass({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'grey',
+    backgroundColor: '#c2c2c2',
     flex: 1,
     marginTop: 16,
-    width: window.width,
+    width: window.width * 2 / 3,
     height: window.height,
+    paddingTop: 20
+  },
+  title: {
+    fontSize: 30,
+    textAlign: 'center',
+    paddingBottom: 20
+  },
+  button: {
+    backgroundColor: 'white',
+    padding: 10,
+    alignItems: 'center'
+  },
+  buttonText: {
+    fontSize: 18
   }
 })

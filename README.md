@@ -75,6 +75,8 @@ Our 10 cents:
 - [ ] Visualize matches data
 - [ ] Fix tabs styling
 - [ ] Implement basic CRUD
+- [ ] Add images
+- [ ] CONSTANTS for app name etc.
 
 
 ### Contributors
