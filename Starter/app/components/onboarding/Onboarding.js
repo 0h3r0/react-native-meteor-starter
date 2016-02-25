@@ -11,37 +11,35 @@ import OnboardingPage from './OnboardingPage.js';
 import SimpleTabBar from './SimpleTabBar.js';
 import Button from 'apsl-react-native-button';
 
-import Home from '../home/Home.js';
-
 import Accounts from '../../config/db/accounts.js';
+import Router from '../../config/router.js';
 
-import SignUp from '../accounts/signUp.js';
-import SignIn from '../accounts/signIn.js';
-
-module.exports = React.createClass({
+export default React.createClass({
   handlePressSignUp() {
-    let nav = this.props.navigator;
-    nav.push({
-      title: 'Sign Up',
-      component: SignUp,
-      sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump,
-      leftButton: {
-        title: 'Cancel',
-        handler: () => nav.pop()
-      }
-    })
+    this.props.navigator.push(Router.getSignUp())
+
+    // nav.push({
+    //   title: 'Sign Up',
+    //   component: SignUp,
+    //   sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump,
+    //   leftButton: {
+    //     title: 'Cancel',
+    //     handler: () => nav.pop()
+    //   }
+    // })
   },
   handlePressSignIn() {
-    let nav = this.props.navigator;
-    nav.push({
-      title: 'Sign In',
-      component: SignIn,
-      sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump,
-      leftButton: {
-        title: 'Cancel',
-        handler: () => nav.pop()
-      }
-    })
+    this.props.navigator.push(Router.getSignIn())
+    // let nav = this.props.navigator;
+    // nav.push({
+    //   title: 'Sign In',
+    //   component: SignIn,
+    //   sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump,
+    //   leftButton: {
+    //     title: 'Cancel',
+    //     handler: () => nav.pop()
+    //   }
+    // })
   },
   render() {
     return (

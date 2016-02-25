@@ -19,7 +19,7 @@ import Accounts from '../../config/db/accounts.js';
 
 let MESSAGES_INTERVAL = 10;
 
-var GiftedMessengerExample = React.createClass({
+export default React.createClass({
   getInitialState() {
     return {
       messages: [],
@@ -201,6 +201,3 @@ var navBarHeight = (Platform.OS === 'android' ? 56 : 64);
 // http://stackoverflow.com/questions/3407256/height-of-status-bar-in-android
 // @todo check Navigator.NavigationBar.Styles.General.NavBarHeight
 var statusBarHeight = (Platform.OS === 'android' ? 25 : 0);
-
-
-module.exports = GiftedMessengerExample;

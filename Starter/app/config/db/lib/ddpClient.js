@@ -1,7 +1,7 @@
 import DDPClient from "ddp-client";
 import _ from "underscore";
 
-import Environment from '../../../environment.js';
+import Environment from '../../environment.js';
 
 let ddpClient = new DDPClient(Environment.ddpOptions);
 
