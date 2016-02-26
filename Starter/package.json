@@ -7,6 +7,7 @@
     "ios": "open ios/Starter.xcodeproj && REACT_EDITOR=atom npm start"
   },
   "dependencies": {
+    "@exponent/react-native-navigator": "^0.4.2",
     "apsl-react-native-button": "^2.4.2",
     "ddp-client": "github:hharnisc/node-ddp-client#minimongo-cache",
     "event-emitter": "^0.3.4",

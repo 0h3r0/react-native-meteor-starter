@@ -11,7 +11,7 @@ import {
 import styles from './_accountsStyles';
 
 import Accounts from '../../config/db/accounts';
-import Home from '../home/Home.js';
+import Router from '../../config/router.js';
 
 export default React.createClass({
   // Configuration
@@ -40,14 +40,7 @@ export default React.createClass({
 
     this.setState({email: '', password: ''}, () => {
       Accounts.signIn(email, password).then( (result) => {
-        console.log("Logged in successfully");
-        this.props.navigator.push({
-          title: 'Home',
-          component: Home,
-          sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump
-        })
-        let userId = result.userId;
-        this.props.handleLoggedIn(userId);
+        this.props.navigator.resetTo(Router.getHome())
       }, (err) => {
         Alert.alert("Error", err.reason)
       })

@@ -13,12 +13,14 @@ import React, {
 const window = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
 
+import Accounts from '../config/db/accounts.js';
+
 export default React.createClass({
   render() {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.title}>TinderChatTabs</Text>
-        <TouchableOpacity style={styles.button} onPress={this.props.handleLogOut}>
+        <TouchableOpacity style={styles.button} onPress={()=> Accounts.signOut()}>
           <Text style={styles.buttonText}>Log out</Text>
         </TouchableOpacity>
       </ScrollView>

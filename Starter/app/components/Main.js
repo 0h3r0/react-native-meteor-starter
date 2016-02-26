@@ -5,16 +5,17 @@ import React, {
   Navigator,
 } from 'react-native';
 
-import Home from './home/Home.js';
-import NavigationBar from 'react-native-navbar';
 import NoConnection from './NoConnection.js';
-import Onboarding from './onboarding/Onboarding.js';
 
 const SideMenu = require('react-native-side-menu');
 import Menu from './Menu.js';
 
 import ddpClient from '../config/db/lib/ddpClient';
 import Accounts from '../config/db/accounts';
+
+import ExNavigator from '@exponent/react-native-navigator';
+import Router from '../config/router.js';
+import MenuEmitter from '../config/emitters.js';
 
 // Polyfill the process functionality needed for minimongo-cache
 global.process = require("../config/db/lib/process.polyfill");
@@ -91,6 +92,10 @@ export default React.createClass({
 
   // Component Lifecycle
   componentWillMount() {
+    MenuEmitter.on('toggleMenu', () => {
+      this.setState({menuOpen: true})
+    })
+
     this.attemptConnection();
 
     // Handling user session
@@ -99,75 +104,25 @@ export default React.createClass({
         this.setState({user: {_id: userId}});
       }
     });
-  },
 
-  handleLoggedIn(userId) {
-    if (userId) {
-      this.setState({user: {_id: userId}});
-    }
-  },
-  handleLogOut() {
-    Accounts.signOut().then(() => {
-      this.setState({user: null})
-    }
-  )
+    Accounts.emitter.on('loggedIn', (userId) => {
+      if (userId) {
+        console.log('loggedIn');
+        this.setState({user: {_id: userId}});
+      }
+    });
+
+    Accounts.emitter.on('loggedOut', () => {
+      console.log('loggedOut');
+      this.setState({
+        user: null,
+        menuOpen: false
+      });
+    });
   },
 
   componentWillUnmount() {
     ddpClient.close();
-  },
-
-  // Navigator Config
-  configureScene(route) {
-    if (route.sceneConfig) {
-      return route.sceneConfig;
-    }
-    return {
-      ...Navigator.SceneConfigs.HorizontalSwipeJump,
-      gestures: false
-    }
-  },
-
-  renderScene(route, navigator) {
-    let Component = route.component;
-
-    let title = {};
-    if (route.title) {
-      title.title = route.title;
-    }
-
-    let leftButton = undefined;
-    if (route.leftButton) {
-      leftButton = route.leftButton;
-    }
-
-    let rightButton = undefined;
-    if (route.rightButton) {
-      rightButton = route.rightButton
-    }
-
-    return (
-      <View style={styles.container}>
-
-        {/* Use title to duckType statusbar or not */}
-        {route.title ?
-        <NavigationBar
-          title={title}
-          leftButton={leftButton}
-          rightButton={rightButton}
-          />
-        : null }
-
-        <Component
-          navigator={navigator}
-          user={this.state.user}
-          handleLoggedIn={this.handleLoggedIn}
-          handleLogOut={this.handleLogOut}
-          menuOpen={this.state.menuOpen}
-          {...route.passProps}
-          />
-      </View>
-    );
   },
 
   // Component Render
@@ -184,31 +139,28 @@ export default React.createClass({
       );
     }
 
-    // Get initial route based on user state
-    let initialRoute = this.state.user ?
-      {
-        component: Home,
-        title: "Home",
-        leftButton: {
-          title: 'Menu',
-          handler: () => {
-            this.setState({
-              menuOpen: !this.state.menuOpen
-            })
-          }
-        }
-      } : {
-        component: Onboarding
-      }
-
-    const menu = <Menu navigator={navigator} handleLogOut={this.handleLogOut} />;
+    const menu = <Menu handleLogOut={this.handleLogOut} />;
+    let initialRoute = this.state.user
+        ? Router.getHome({user: this.state.user})
+        : Router.getOnboarding()
     return (
       <SideMenu menu={menu} isOpen={this.state.menuOpen}>
-        <Navigator
+        <ExNavigator
           initialRoute={initialRoute}
-          renderScene={this.renderScene}
-          configureScene={this.configureScene}
-          sceneStyle={{paddingTop: 0}}
+          sceneStyle={{
+            overflow: 'visible',
+            shadowColor: '#ddd',
+            shadowOpacity: 0.5,
+            shadowRadius: 6,
+            paddingTop: 64,
+            // paddingTop: this.state.user ? 64 : 0,
+          }}
+          // renderNavigationBar={(props) => {
+          //   if (this.state.user)
+          //     return (
+          //       <Navigator.NavigationBar {...props} />
+          //     )
+          // }}
         />
       </SideMenu>
     );

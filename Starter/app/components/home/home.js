@@ -12,29 +12,26 @@ import React, {
 } from 'react-native';
 
 import Accounts from '../../config/db/accounts.js';
-import Onboarding from '../onboarding/Onboarding.js';
+import Router from '../../config/router.js';
 
-// Tabs
-import Tabs from '../tabs/Tabs.js';
 
-// Chat
-import Chat from '../chat/Chat.js';
-
-// Tinder
-import Tinder from '../tinder/Tinder.js';
-import Matches from '../tinder/Matches.js';
+// Using _loggedOutEmitterSet property on global
+// to prevent emitter being set multiple times
+// TODO: Find more elegant solution
+let __global = this;
 
 export default React.createClass({
+  componentWillMount() {
+    if (!__global._loggedOutEmitterSet) {
+      Accounts.emitter.on('loggedOut', ()=> {
+        console.log('emit');
+        this.props.navigator.resetTo(Router.getOnboarding())
+      })
+      __global._loggedOutEmitterSet = true;
+    }
+  },
   handlePress(route, rightButton) {
-    let nav = this.props.navigator;
-    nav.push({...route,
-      sceneConfig: {...Navigator.SceneConfigs.FloatFromRight, gestures: false},
-      leftButton: {
-        title: 'Back',
-        handler: () => nav.pop(),
-        gestures: false
-      }
-    })
+    this.props.navigator.push(route.route)
   },
   getInitialState: function() {
     let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -44,32 +41,23 @@ export default React.createClass({
         {
           title: "Tinder",
           description: "Like dating, with colors",
-          component: Tinder,
-          rightButton: {
-            title: "Matches",
-            handler: () => {
-              nav.push({
-                title: "Matches",
-                component: Matches,
-                leftButton: {
-                  title: 'Back',
-                  handler: () => nav.pop(),
-                  gestures: false
-                }
-              })
-            },
-            gestures:false
-          }
+          route: Router.getTinder({
+            user: this.props.user
+          })
         },
         {
           title: "Tabs",
           description: "Slide and CRUD",
-          component: Tabs
+          route: Router.getTabs({
+            user: this.props.user
+          })
         },
         {
           title: "Chat",
           description: "Hurl abuse",
-          component: Chat
+          route: Router.getChat({
+            user: this.props.user
+          })
         }
       ]),
     };
