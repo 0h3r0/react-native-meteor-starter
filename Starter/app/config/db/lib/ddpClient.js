@@ -22,7 +22,7 @@ ddp.initialize = () => {
       if (wasReconnect) {
         console.log('Reestablishment of a connection.');
       }
-      
+
       // Connected
       resolve(true);
     });

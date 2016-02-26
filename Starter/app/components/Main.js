@@ -46,7 +46,8 @@ export default React.createClass({
     try {
       ddpClient.close()
     } catch (err) {
-      console.log(err);
+      // TODO: Prevent error when trying to close
+      // console.log(err);
     }
 
     ddpClient.initialize()
