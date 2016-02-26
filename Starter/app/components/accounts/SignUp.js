@@ -42,20 +42,18 @@ export default React.createClass({
       return this.setState({error: 'Passwords must match.'});
     }
 
-    this.setState({email: '', password: '', confirmPassword: ''}, () => {
-      Accounts.signUp(email, password).then( (result) => {
-        console.log("Signed up successfully");
-        this.props.navigator.push({
-          title: 'Home',
-          component: Home,
-          sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump
-        })
-        let userId = result.userId;
-        this.props.handleLoggedIn(userId);
-      }, (err) => {
-        Alert.alert("Error", err.reason)
+    Accounts.signUp(email, password).then( (result) => {
+      console.log("Signed up successfully");
+      this.props.navigator.push({
+        title: 'Home',
+        component: Home,
+        sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump
       })
-    });
+      let userId = result.userId;
+      this.props.handleLoggedIn(userId);
+    }, (err) => {
+      Alert.alert("Error", err.reason)
+    })
   },
 
   // Component Render

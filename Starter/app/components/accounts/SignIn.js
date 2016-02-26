@@ -38,13 +38,11 @@ export default React.createClass({
       return this.setState({error: 'Please enter all fields.'});
     }
 
-    this.setState({email: '', password: ''}, () => {
-      Accounts.signIn(email, password).then( (result) => {
-        this.props.navigator.resetTo(Router.getHome())
-      }, (err) => {
-        Alert.alert("Error", err.reason)
-      })
-    });
+    Accounts.signIn(email, password).then( (result) => {
+      this.props.navigator.resetTo(Router.getHome())
+    }, (err) => {
+      Alert.alert("Error", err.reason)
+    })
   },
 
   // Component Render
