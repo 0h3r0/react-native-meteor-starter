@@ -40,10 +40,7 @@ export default React.createClass({
 
     this.setState({email: '', password: ''}, () => {
       Accounts.signIn(email, password).then( (result) => {
-        console.log("Logged in successfully");
-        this.props.navigator.push(Router.getHome())
-        let userId = result.userId;
-        this.props.handleLoggedIn(userId);
+        this.props.navigator.resetTo(Router.getHome())
       }, (err) => {
         Alert.alert("Error", err.reason)
       })

@@ -33,8 +33,9 @@ let Router = {
         return require('../components/onboarding/Onboarding.js').default;
       },
       getTitle() {
-        return 'Onboarding';
-      }
+        return 'Starter';
+      },
+      showNavigationBar: false
     };
   },
   getSignIn() {

@@ -14,7 +14,22 @@ import React, {
 import Accounts from '../../config/db/accounts.js';
 import Router from '../../config/router.js';
 
+
+// Using _loggedOutEmitterSet property on global
+// to prevent emitter being set multiple times
+// TODO: Find more elegant solution
+let __global = this;
+
 export default React.createClass({
+  componentWillMount() {
+    if (!__global._loggedOutEmitterSet) {
+      Accounts.emitter.on('loggedOut', ()=> {
+        console.log('emit');
+        this.props.navigator.resetTo(Router.getOnboarding())
+      })
+      __global._loggedOutEmitterSet = true;
+    }
+  },
   handlePress(route, rightButton) {
     this.props.navigator.push(route.route)
   },

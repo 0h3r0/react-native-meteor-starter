@@ -17,29 +17,9 @@ import Router from '../../config/router.js';
 export default React.createClass({
   handlePressSignUp() {
     this.props.navigator.push(Router.getSignUp())
-
-    // nav.push({
-    //   title: 'Sign Up',
-    //   component: SignUp,
-    //   sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump,
-    //   leftButton: {
-    //     title: 'Cancel',
-    //     handler: () => nav.pop()
-    //   }
-    // })
   },
   handlePressSignIn() {
     this.props.navigator.push(Router.getSignIn())
-    // let nav = this.props.navigator;
-    // nav.push({
-    //   title: 'Sign In',
-    //   component: SignIn,
-    //   sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump,
-    //   leftButton: {
-    //     title: 'Cancel',
-    //     handler: () => nav.pop()
-    //   }
-    // })
   },
   render() {
     return (

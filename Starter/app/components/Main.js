@@ -104,17 +104,21 @@ export default React.createClass({
         this.setState({user: {_id: userId}});
       }
     });
-  },
 
-  handleLoggedIn(userId) {
-    if (userId) {
-      this.setState({user: {_id: userId}});
-    }
-  },
-  handleLogOut() {
-    Accounts.signOut().then(() => {
-      this.setState({user: null})
-    })
+    Accounts.emitter.on('loggedIn', (userId) => {
+      if (userId) {
+        console.log('loggedIn');
+        this.setState({user: {_id: userId}});
+      }
+    });
+
+    Accounts.emitter.on('loggedOut', () => {
+      console.log('loggedOut');
+      this.setState({
+        user: null,
+        menuOpen: false
+      });
+    });
   },
 
   componentWillUnmount() {
@@ -144,13 +148,19 @@ export default React.createClass({
         <ExNavigator
           initialRoute={initialRoute}
           sceneStyle={{
-            paddingTop: 64,
             overflow: 'visible',
             shadowColor: '#ddd',
             shadowOpacity: 0.5,
-            shadowRadius: 6
+            shadowRadius: 6,
+            paddingTop: 64,
+            // paddingTop: this.state.user ? 64 : 0,
           }}
-          // showNavigationBar={false}
+          // renderNavigationBar={(props) => {
+          //   if (this.state.user)
+          //     return (
+          //       <Navigator.NavigationBar {...props} />
+          //     )
+          // }}
         />
       </SideMenu>
     );
