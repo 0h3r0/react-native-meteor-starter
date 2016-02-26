@@ -35,7 +35,7 @@ let Router = {
       getTitle() {
         return 'Starter';
       },
-      showNavigationBar: false
+      // showNavigationBar: false
     };
   },
   getSignIn() {
