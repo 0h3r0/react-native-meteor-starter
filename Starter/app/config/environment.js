@@ -1,7 +1,8 @@
+'use strict'
+
 import {Platform} from 'react-native';
 
-getEnvironmentName = () => {
-  console.log(process)
+let getEnvironmentName = () => {
   // Logic for figuring out platform
 
   return 'dev';
@@ -9,7 +10,7 @@ getEnvironmentName = () => {
   // return 'production';
 }
 
-Environments = {
+const Environments = {
   dev: {
     ddpOptions: {
       // Note: localhost for iOS, 10.0.2.2 for Android, 10.0.3.2 for Android Genymotion
