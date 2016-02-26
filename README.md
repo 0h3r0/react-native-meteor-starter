@@ -65,6 +65,7 @@ Our 10 cents:
 * Do not use arrow functions `() => ` to define `Meteor.publish` functions or `Meteor.methods({})`, otherwise `this` will not behave as expected
 
 ### Todos
+- [ ] Client-side validation for email ([tcomb-form](https://github.com/gcanti/tcomb-form-native)?)
 - [ ] Create profile page when click on chat image
 - [ ] Improve 'Load new messages' loading experience
 - [ ] Globalize some styles e.g. colors
