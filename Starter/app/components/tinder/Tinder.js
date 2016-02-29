@@ -3,7 +3,7 @@
 import React, { StyleSheet, Text, View,Image} from 'react-native';
 
 import SwipeCards from 'react-native-swipe-cards';
-import MatchesDB from '../../config/db/matches.js';
+import MatchesDB from '../../config/db/matches';
 
 let Card = React.createClass({
   render() {

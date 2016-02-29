@@ -11,7 +11,7 @@ import {
 import styles from './_accountsStyles';
 
 import Accounts from '../../config/db/accounts';
-import Router from '../../config/router.js';
+import Router from '../../config/router';
 import {validateEmail} from '../../config/utils'
 
 export default React.createClass({

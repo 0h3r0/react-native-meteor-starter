@@ -5,17 +5,17 @@ import React, {
   Navigator,
 } from 'react-native';
 
-import NoConnection from './NoConnection.js';
+import NoConnection from './NoConnection';
 
 const SideMenu = require('react-native-side-menu');
-import Menu from './Menu.js';
+import Menu from './Menu';
 
 import ddpClient from '../config/db/lib/ddpClient';
 import Accounts from '../config/db/accounts';
 
 import ExNavigator from '@exponent/react-native-navigator';
-import Router from '../config/router.js';
-import MenuEmitter from '../config/emitters.js';
+import Router from '../config/router';
+import MenuEmitter from '../config/emitters';
 
 // Polyfill the process functionality needed for minimongo-cache
 global.process = require("../config/db/lib/process.polyfill");

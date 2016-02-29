@@ -4,7 +4,7 @@ import React, {
   AppRegistry,
 } from 'react-native';
 
-import Main from './app/components/Main.js';
+import Main from './app/components/Main';
 
 let Starter = React.createClass({
   render: function() {

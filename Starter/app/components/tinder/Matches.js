@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { StyleSheet, Text, View, Image, ListView, Dimensions} from 'react-native';
-import MatchesDB from '../../config/db/matches.js';
+import MatchesDB from '../../config/db/matches';
 
 let device = require('Dimensions').get('window');
 

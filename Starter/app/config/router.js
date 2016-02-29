@@ -4,13 +4,13 @@ import React, {
   StyleSheet,
 } from 'react-native';
 
-import MenuEmitter from '../config/emitters.js';
+import MenuEmitter from '../config/emitters';
 
 let Router = {
   getHome(props) {
     return {
       renderScene(navigator) {
-        let Home = require('../components/home/Home.js').default
+        let Home = require('../components/home/Home').default
         return <Home navigator={navigator} {...props} />
       },
       getTitle() {
@@ -30,7 +30,7 @@ let Router = {
   getOnboarding() {
     return {
       getSceneClass() {
-        return require('../components/onboarding/Onboarding.js').default;
+        return require('../components/onboarding/Onboarding').default;
       },
       getTitle() {
         return 'Starter';
@@ -41,7 +41,7 @@ let Router = {
   getSignIn() {
     return {
       getSceneClass() {
-        return require('../components/accounts/SignIn.js').default;
+        return require('../components/accounts/SignIn').default;
       },
       getTitle() {
         return 'SignIn';
@@ -51,7 +51,7 @@ let Router = {
   getSignUp() {
     return {
       getSceneClass() {
-        return require('../components/accounts/SignUp.js').default;
+        return require('../components/accounts/SignUp').default;
       },
       getTitle() {
         return 'SignUp';
@@ -61,7 +61,7 @@ let Router = {
   getTinder(props) {
     return {
       renderScene(navigator) {
-        let Tinder = require('../components/tinder/Tinder.js').default
+        let Tinder = require('../components/tinder/Tinder').default
         return <Tinder navigator={navigator} {...props} />
       },
       getTitle() {
@@ -81,7 +81,7 @@ let Router = {
   getChat(props) {
     return {
       renderScene(navigator) {
-        let Chat = require('../components/chat/Chat.js').default
+        let Chat = require('../components/chat/Chat').default
         return <Chat navigator={navigator} {...props} />
       },
       getTitle() {
@@ -92,7 +92,7 @@ let Router = {
   getTabs(props) {
     return {
       renderScene(navigator) {
-        let Tabs = require('../components/tabs/Tabs.js').default
+        let Tabs = require('../components/tabs/Tabs').default
         return <Tabs navigator={navigator} {...props} />
       },
       getTitle() {
@@ -103,7 +103,7 @@ let Router = {
   getMatches() {
     return {
       renderScene(navigator) {
-        let Matches = require('../components/tinder/Matches.js').default
+        let Matches = require('../components/tinder/Matches').default
         return <Matches navigator={navigator} />
       },
       getTitle() {

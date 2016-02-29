@@ -11,8 +11,8 @@ import React, {
   Navigator
 } from 'react-native';
 
-import Accounts from '../../config/db/accounts.js';
-import Router from '../../config/router.js';
+import Accounts from '../../config/db/accounts';
+import Router from '../../config/router';
 
 
 // Using _loggedOutEmitterSet property on global

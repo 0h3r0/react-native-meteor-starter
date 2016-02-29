@@ -10,10 +10,10 @@ import React, {
   Image
 } from 'react-native';
 
-import ItemsDB from '../../config/db/items.js';
+import ItemsDB from '../../config/db/items';
 import icon from '../../images/fa-cog/fa-cog.png';
 import Button from 'apsl-react-native-button';
-import Onboarding from '../onboarding/Onboarding.js';
+import Onboarding from '../onboarding/Onboarding';
 
 module.exports = React.createClass({
   getInitialState: () => {

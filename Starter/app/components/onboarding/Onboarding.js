@@ -7,12 +7,12 @@ import React, {
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
-import OnboardingPage from './OnboardingPage.js';
-import SimpleTabBar from './SimpleTabBar.js';
+import OnboardingPage from './OnboardingPage';
+import SimpleTabBar from './SimpleTabBar';
 import Button from 'apsl-react-native-button';
 
-import Accounts from '../../config/db/accounts.js';
-import Router from '../../config/router.js';
+import Accounts from '../../config/db/accounts';
+import Router from '../../config/router';
 
 export default React.createClass({
   handlePressSignUp() {

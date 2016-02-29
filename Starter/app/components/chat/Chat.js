@@ -12,10 +12,10 @@ var {
 
 var GiftedMessenger = require('react-native-gifted-messenger');
 var Communications = require('react-native-communications');
-import NoData from '../shared/NoData.js';
+import NoData from '../shared/NoData';
 
-import MessagesDB from '../../config/db/messages.js';
-import Accounts from '../../config/db/accounts.js';
+import MessagesDB from '../../config/db/messages';
+import Accounts from '../../config/db/accounts';
 
 let MESSAGES_INTERVAL = 10;
 

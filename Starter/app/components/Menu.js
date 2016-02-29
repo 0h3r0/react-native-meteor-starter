@@ -13,7 +13,7 @@ import React, {
 const window = Dimensions.get('window');
 import Button from 'apsl-react-native-button';
 
-import Accounts from '../config/db/accounts.js';
+import Accounts from '../config/db/accounts';
 
 export default React.createClass({
   render() {

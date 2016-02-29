@@ -9,7 +9,7 @@ import React, {
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
-import Items from './Items.js';
+import Items from './Items';
 
 export default React.createClass({
   render(){
