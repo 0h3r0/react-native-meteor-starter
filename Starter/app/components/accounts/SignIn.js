@@ -42,7 +42,7 @@ export default React.createClass({
       return this.setState({error: 'Not a valid email'})
 
     Accounts.signIn(email, password).then( (result) => {
-      this.props.navigator.resetTo(Router.getHome())
+      this.props.navigator.resetTo(Router.getHome({user: {_id: result.userId}}))
     }, (err) => {
       Alert.alert("Error", err.reason)
     })

@@ -5,6 +5,6 @@ Meteor.methods({
     check(email, String);
     check(password, String);
 
-    return Accounts.createUser({email: email, password: password});
+    return Accounts.createUser({username: username, email: email, password: password});
   }
 });

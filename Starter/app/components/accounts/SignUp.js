@@ -44,7 +44,7 @@ export default React.createClass({
 
     Accounts.signUp(username, email, password).then( (result) => {
       console.log("Signed up successfully");
-      this.props.navigator.resetTo(Router.getHome())
+      this.props.navigator.resetTo(Router.getHome({user: {_id: result.userId}}))
     }, (err) => {
       Alert.alert("Error", err.reason)
     })

@@ -15,12 +15,20 @@ Messages.attachSchema(new SimpleSchema({
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     optional: true
+  },
+  username: {
+    type: String
   }
 }));
 
 Meteor.methods({
   'Messages.insert': function(message) {
-    message.owner = this.userId;
+    check(message, {content: String});
+
+    let user = Meteor.users.findOne(this.userId);
+
+    message.owner = user._id;
+    message.username = user.username;
     return Messages.insert(message);
   },
   'Messages.count': function() {
@@ -29,6 +37,8 @@ Meteor.methods({
 });
 
 Meteor.publish('messages', function(skip, limit) {
+  check(skip, Match.Optional(Number));
+  check(limit, Match.Optional(Number));
   return Messages.find({}, {skip: skip, limit: limit, sort: {createdAt: -1}});
 })
 

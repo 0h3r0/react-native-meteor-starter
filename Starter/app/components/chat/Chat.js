@@ -54,13 +54,13 @@ export default React.createClass({
       .sort((a, b) => {
         return a.createdAt - b.createdAt;
       })
-      .map((message) => {
+      .map((m) => {
         return {
-          text: message.content,
-          name: "",
+          text: m.content,
+          name: m.username,
           image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
-          position: message.owner === this.props.user._id ? 'right' : 'left',
-          date: message.createdAt
+          position: m.owner === this.props.user._id ? 'right' : 'left',
+          date: m.createdAt
         }
       })
     return messages;
