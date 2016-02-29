@@ -13,6 +13,8 @@ import styles from './_accountsStyles';
 import Accounts from '../../config/db/accounts';
 import Home from '../home/Home.js';
 
+import {validateEmail} from '../../config/utils'
+
 export default React.createClass({
   // Configuration
   displayName: 'Sign Up',
@@ -22,7 +24,6 @@ export default React.createClass({
     return {
       email: '',
       password: '',
-      confirmPassword: '',
       error: null
     }
   },
@@ -33,14 +34,13 @@ export default React.createClass({
       error: null
     })
 
-    let { email, password, confirmPassword } = this.state;
-    if (!email || !password || !confirmPassword) {
-      return this.setState({error: 'Please enter all fields.'});
-    }
+    let { email, password} = this.state;
 
-    if (password !== confirmPassword) {
-      return this.setState({error: 'Passwords must match.'});
-    }
+    if (!email || !password)
+      return this.setState({error: 'Please enter all fields.'});
+
+    if (!validateEmail(email))
+      return this.setState({error: 'Not a valid email'})
 
     Accounts.signUp(email, password).then( (result) => {
       console.log("Signed up successfully");
@@ -75,14 +75,6 @@ export default React.createClass({
           placeholder="password"
           secureTextEntry={true}
           onChangeText={(text) => this.setState({password: text})}
-          />
-
-        <TextInput
-          ref='confirmPassword'
-          style={styles.input}
-          placeholder="confirm password"
-          secureTextEntry={true}
-          onChangeText={(text) => this.setState({confirmPassword: text})}
           />
 
         <TouchableOpacity

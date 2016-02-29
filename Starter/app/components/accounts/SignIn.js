@@ -13,6 +13,8 @@ import styles from './_accountsStyles';
 import Accounts from '../../config/db/accounts';
 import Router from '../../config/router.js';
 
+import {validateEmail} from '../../config/utils'
+
 export default React.createClass({
   // Configuration
   displayName: 'Sign In',
@@ -34,9 +36,11 @@ export default React.createClass({
 
     let { email, password } = this.state;
 
-    if (!email || !password) {
-      return this.setState({error: 'Please enter all fields.'});
-    }
+    if (!email || !password)
+      return this.setState({error: 'Please enter all fields.'})
+
+    if (!validateEmail(email))
+      return this.setState({error: 'Not a valid email'})
 
     Accounts.signIn(email, password).then( (result) => {
       this.props.navigator.resetTo(Router.getHome())
