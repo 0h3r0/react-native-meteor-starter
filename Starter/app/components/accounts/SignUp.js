@@ -11,8 +11,7 @@ import {
 import styles from './_accountsStyles';
 
 import Accounts from '../../config/db/accounts';
-import Home from '../home/Home.js';
-
+import Router from '../../config/router.js';
 import {validateEmail} from '../../config/utils'
 
 export default React.createClass({
@@ -44,13 +43,7 @@ export default React.createClass({
 
     Accounts.signUp(email, password).then( (result) => {
       console.log("Signed up successfully");
-      this.props.navigator.push({
-        title: 'Home',
-        component: Home,
-        sceneConfig: Navigator.SceneConfigs.VerticalUpSwipeJump
-      })
-      let userId = result.userId;
-      this.props.handleLoggedIn(userId);
+      this.props.navigator.resetTo(Router.getHome())
     }, (err) => {
       Alert.alert("Error", err.reason)
     })
