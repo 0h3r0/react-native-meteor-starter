@@ -21,6 +21,7 @@ export default React.createClass({
   // Initial State
   getInitialState() {
     return {
+      username: '',
       email: '',
       password: '',
       error: null
@@ -33,15 +34,15 @@ export default React.createClass({
       error: null
     })
 
-    let { email, password} = this.state;
+    let { username, email, password} = this.state;
 
-    if (!email || !password)
+    if (!username || !email || !password)
       return this.setState({error: 'Please enter all fields.'});
 
     if (!validateEmail(email))
       return this.setState({error: 'Not a valid email'})
 
-    Accounts.signUp(email, password).then( (result) => {
+    Accounts.signUp(username, email, password).then( (result) => {
       console.log("Signed up successfully");
       this.props.navigator.resetTo(Router.getHome())
     }, (err) => {
@@ -55,10 +56,17 @@ export default React.createClass({
       <View style={styles.container}>
         <Text style={styles.headerText}>Sign Up</Text>
         <TextInput
+          ref='username'
+          style={styles.input}
+          placeholder="Username"
+          autoFocus={true}
+          onChangeText={(text) => this.setState({username: text})}
+          />
+
+        <TextInput
           ref='email'
           style={styles.input}
           placeholder="email address"
-          autoFocus={true}
           onChangeText={(text) => this.setState({email: text})}
           />
 

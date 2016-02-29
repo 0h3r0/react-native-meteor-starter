@@ -1,11 +1,10 @@
 Meteor.methods({
-  'Users.create': function(email, password) {
+  'Users.create': function(username, email, password) {
+
+    check(username, String);
+    check(email, String);
+    check(password, String);
+
     return Accounts.createUser({email: email, password: password});
   }
 });
-
-Meteor.methods({
-  'testUserId': ()=> {
-    console.log(this.userId);
-  }
-})

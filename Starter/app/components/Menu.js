@@ -30,7 +30,7 @@ export default React.createClass({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#c2c2c2',
+    backgroundColor: '#333333',
     flex: 1,
     marginTop: 16,
     width: window.width * 2 / 3,
@@ -39,15 +39,16 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
+    color: "#eee",
     textAlign: 'center',
     paddingBottom: 20
   },
   button: {
-    backgroundColor: 'white',
     padding: 10,
     alignItems: 'center'
   },
   buttonText: {
-    fontSize: 18
+    fontSize: 18,
+    color: '#eee'
   }
 })

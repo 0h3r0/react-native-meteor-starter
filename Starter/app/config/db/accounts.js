@@ -77,8 +77,8 @@ Accounts.signInWithToken = () => {
   });
 };
 
-Accounts.signUp = (email, password) => {
-  return ddpClient.call('Users.create', [email, password])
+Accounts.signUp = (username, email, password) => {
+  return ddpClient.call('Users.create', [username, email, password])
     .then(() => {
       return Accounts.signIn(email, password);
     });
