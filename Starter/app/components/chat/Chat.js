@@ -1,5 +1,6 @@
 'use strict';
 
+// Example taken from https://github.com/FaridSafi/react-native-gifted-messenger
 var React = require('react-native');
 var {
   LinkingIOS,
@@ -56,7 +57,7 @@ export default React.createClass({
       .map((message) => {
         return {
           text: message.content,
-          name: "Ben",
+          name: "",
           image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
           position: message.owner === this.props.user._id ? 'right' : 'left',
           date: message.createdAt
