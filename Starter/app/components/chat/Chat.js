@@ -57,7 +57,7 @@ export default React.createClass({
       .map((m) => {
         return {
           text: m.content,
-          name: m.username,
+          name: m.getUsername(),
           image: {uri: 'https://facebook.github.io/react/img/logo_og.png'},
           position: m.owner === this.props.user._id ? 'right' : 'left',
           date: m.createdAt

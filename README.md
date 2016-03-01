@@ -78,6 +78,7 @@ Our 10 cents:
 - [ ] Implement basic CRUD
 - [ ] Add images
 - [ ] CONSTANTS for app name etc.
+- [ ] Gravatar (`npm i gravatar`)
 
 
 ### Contributors
