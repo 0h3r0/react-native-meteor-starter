@@ -4,7 +4,7 @@ A boilerplate for [Meteor](http://meteor.com) and [React Native](https://faceboo
 ### What's in the box
 * **Onboarding** - swipe through welcome panels
 * **Accounts** - create accounts & sign up
-* **CRUD** - add, update, items to a collection
+* **CRUD** - (in progress) add, update, items to a collection
 * [**Tinder**](https://github.com/meteor-factory/react-native-tinder-swipe-cards) - swipe happily through colors
 * [**Messaging**](https://github.com/FaridSafi/react-native-gifted-messenger/) - Actually, it's more like a forum, but youget the point
 
