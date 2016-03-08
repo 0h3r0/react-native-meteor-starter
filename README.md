@@ -20,7 +20,7 @@ Helpful examples for using [Meteor](http://meteor.com) with [React Native](https
 ##### 1. Start the Meteor backend server
 `cd meteor && meteor`
 
---> **Open a new tab**  <--
+--> **Open a new terminal tab**  <--
 ##### 2. Run on iOS (Mac only. Very easy)
 `cd Starter && npm install && npm run ios` then click the 'Play' button on Xcode.
 
@@ -63,6 +63,7 @@ Our 10 cents:
 * Do not use arrow functions `() => ` to define `Meteor.publish` functions or `Meteor.methods({})`, otherwise `this` will not behave as expected
 
 ### Todos
+- [ ] Android support
 - [ ] Client-side validation for email ([tcomb-form](https://github.com/gcanti/tcomb-form-native)?)
 - [ ] Create profile page when click on chat image
 - [ ] Improve 'Load new messages' loading experience
