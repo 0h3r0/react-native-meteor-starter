@@ -6,7 +6,7 @@ Helpful examples for using [Meteor](http://meteor.com) with [React Native](https
 * **Accounts** - create accounts & sign up
 * **CRUD** - (in progress) add, update, items to a collection
 * [**Tinder**](https://github.com/meteor-factory/react-native-tinder-swipe-cards) - swipe happily through colors
-* [**Messaging**](https://github.com/FaridSafi/react-native-gifted-messenger/) - Actually, it's more like a forum, but youget the point
+* [**Messaging**](https://github.com/FaridSafi/react-native-gifted-messenger/) - Actually, it's more like a forum, but you get the point
 
 ![Meteor + React Native](https://raw.githubusercontent.com/meteor-factory/react-native-meteor-starter/develop/screenshots/react-native-meteor-starter-1.gif)
 ![Meteor + React Native](https://raw.githubusercontent.com/meteor-factory/react-native-meteor-starter/develop/screenshots/react-native-meteor-starter-2.gif)
@@ -23,12 +23,6 @@ Helpful examples for using [Meteor](http://meteor.com) with [React Native](https
 --> **Open a new tab**  <--
 ##### 2. Run on iOS (Mac only. Very easy)
 `cd Starter && npm install && npm run ios` then click the 'Play' button on Xcode.
-
-OR
-
-##### 2. Run on Android (More complicated)
-After following the [Android Setup instructions](https://facebook.github.io/react-native/docs/android-setup.html),
-`cd Starter && react-native run-android`
 
 ### React Native & Meteor - why, how, what?
 #### How do they work together?
