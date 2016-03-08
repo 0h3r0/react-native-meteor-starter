@@ -4,6 +4,10 @@ Items = new Mongo.Collection('items');
 Schema from Meteor packages aldeed:simple-schema and aldeed:collection2
 */
 
+/*
+TODO: implement this with frontend
+*/
+
 Items.attachSchema(new SimpleSchema({
   title: {
     type: String

@@ -19,7 +19,7 @@ export default React.createClass({
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Text style={styles.title}>TinderChatTabs</Text>
+        <Text style={styles.title}>TinderChatCrud</Text>
         <TouchableOpacity style={styles.button} onPress={()=> Accounts.signOut()}>
           <Text style={styles.buttonText}>Log out</Text>
         </TouchableOpacity>

@@ -89,14 +89,14 @@ let Router = {
       }
     }
   },
-  getTabs(props) {
+  getCrud(props) {
     return {
       renderScene(navigator) {
-        let Tabs = require('../components/tabs/Tabs').default
-        return <Tabs navigator={navigator} {...props} />
+        let Crud = require('../components/crud/Crud').default
+        return <Crud navigator={navigator} {...props} />
       },
       getTitle() {
-        return 'Tabs';
+        return 'Crud';
       }
     }
   },

@@ -53,17 +53,17 @@ module.exports = React.createClass({
 
   render() {
     var containerWidth = this.props.containerWidth;
-    var numberOfTabs = this.props.tabs.length;
+    var numberOfCrud = this.props.tabs.length;
     var tabUnderlineStyle = {
       position: 'absolute',
-      width: containerWidth / numberOfTabs,
+      width: containerWidth / numberOfCrud,
       height: 4,
       backgroundColor: this.props.underlineColor || "navy",
       bottom: 0,
     };
 
     var left = this.props.scrollValue.interpolate({
-      inputRange: [0, 1], outputRange: [0,  containerWidth / numberOfTabs]
+      inputRange: [0, 1], outputRange: [0,  containerWidth / numberOfCrud]
     });
 
     return (

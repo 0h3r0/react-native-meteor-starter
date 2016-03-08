@@ -50,7 +50,7 @@ export default React.createClass({
           title: "CRUD",
           description: "A work in progress",
           imgQuery: 'gears',
-          route: Router.getTabs({
+          route: Router.getCrud({
             user: this.props.user
           })
         },

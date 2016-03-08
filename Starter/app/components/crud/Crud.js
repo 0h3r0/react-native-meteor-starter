@@ -11,8 +11,6 @@ import React, {
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
-import Items from './Items';
-
 import {TransitionMotion, spring} from 'react-motion';
 
 const presets = {

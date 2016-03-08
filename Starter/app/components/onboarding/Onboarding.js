@@ -25,7 +25,7 @@ export default React.createClass({
     return (
       <View style={styles.container}>
         <ScrollableTabView tabBarUnderlineColor="white" renderTabBar={() => <SimpleTabBar/>}  tabBarPosition="bottom">
-          <OnboardingPage tabLabel="0" title="Welcome to TinderChatTabs" style={{backgroundColor: "#3498db"}} />
+          <OnboardingPage tabLabel="0" title="Welcome to TinderChatCrud" style={{backgroundColor: "#3498db"}} />
           <OnboardingPage tabLabel="1" title="Your favorite apps" style={{backgroundColor: "#e74c3c"}} />
           <OnboardingPage tabLabel="2" title="Built with React Native" style={{backgroundColor: "#27ae60"}} />
         </ScrollableTabView>
