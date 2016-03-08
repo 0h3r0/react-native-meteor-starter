@@ -8,6 +8,10 @@ Helpful examples for using [Meteor](http://meteor.com) with [React Native](https
 * [**Tinder**](https://github.com/meteor-factory/react-native-tinder-swipe-cards) - swipe happily through colors
 * [**Messaging**](https://github.com/FaridSafi/react-native-gifted-messenger/) - Actually, it's more like a forum, but youget the point
 
+![Meteor + React Native](https://raw.githubusercontent.com/meteor-factory/react-native-meteor-starter/develop/screenshots/react-native-meteor-starter-1.gif)
+![Meteor + React Native](https://raw.githubusercontent.com/meteor-factory/react-native-meteor-starter/develop/screenshots/react-native-meteor-starter-2.gif)
+![Meteor + React Native](https://raw.githubusercontent.com/meteor-factory/react-native-meteor-starter/develop/screenshots/react-native-meteor-starter-3.gif)
+
 ### Quick Start
 ##### 0. Prerequisites
 * [Meteor is installed](https://www.meteor.com/install)
