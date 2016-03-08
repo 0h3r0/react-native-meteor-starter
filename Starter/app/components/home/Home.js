@@ -41,13 +41,15 @@ export default React.createClass({
         {
           title: "Tinder",
           description: "Like dating, with colors",
+          imgQuery: 'fire',
           route: Router.getTinder({
             user: this.props.user
           })
         },
         {
-          title: "Tabs",
-          description: "Slide and CRUD",
+          title: "CRUD",
+          description: "A work in progress",
+          imgQuery: 'gears',
           route: Router.getTabs({
             user: this.props.user
           })
@@ -55,6 +57,7 @@ export default React.createClass({
         {
           title: "Chat",
           description: "Hurl abuse",
+          imgQuery: 'chat',
           route: Router.getChat({
             user: this.props.user
           })
@@ -66,7 +69,7 @@ export default React.createClass({
     return (
       <TouchableOpacity ref={route.title} style={styles.row} onPress={() => this.handlePress(route, rightButton) }>
         <Image
-          source={{uri: "http://loremflickr.com/g/320/240/paris"}}
+          source={{uri: `http://loremflickr.com/g/320/240/${route.imgQuery}`}}
           style={styles.thumbnail}
         />
         <View style={styles.rightContainer}>

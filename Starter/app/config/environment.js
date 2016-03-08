@@ -12,6 +12,7 @@ let getEnvironmentName = () => {
 
 const Environments = {
   dev: {
+    env: 'dev',
     ddpOptions: {
       // Note: localhost for iOS, 10.0.2.2 for Android, 10.0.3.2 for Android Genymotion
       host : Platform.OS === 'ios' ? "localhost" : "10.0.3.2",
@@ -24,17 +25,19 @@ const Environments = {
     }
   },
   stage: {
+    env: 'stage',
     ddpOptions: {
-      // host : "stage.app.com",
-      // port : 80,
-      // ssl  : false,
-      // autoReconnect : true,
-      // autoReconnectTimer : 500,
-      // maintainCollections : true,
-      // ddpVersion : '1'
+      host : "react-native-starter.meteor.com",
+      port : 80,
+      ssl  : false,
+      autoReconnect : true,
+      autoReconnectTimer : 500,
+      maintainCollections : true,
+      ddpVersion : '1'
     }
   },
   production: {
+    env: 'production',
     ddpOptions: {
       // host : "app.com",
       // port : 443,

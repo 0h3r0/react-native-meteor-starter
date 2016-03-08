@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import Button from 'apsl-react-native-button';
+import Environment from '../config/environment.js';
 
 export default React.createClass({
   render() {
@@ -15,6 +16,11 @@ export default React.createClass({
         <Text style={styles.message}>
           {this.props.loaded ? "No connection :(" : "Loading..." }
         </Text>
+        {Environment.env == 'stage' ?
+          <Text style={styles.message}>Meteor free hosting takes a while to boot up. react-native-starter.meteor.com</Text>
+        :
+          null
+        }
         <Button
           style={styles.button}
           onPress={this.props.handlePress}

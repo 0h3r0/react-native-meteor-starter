@@ -1,7 +1,7 @@
 'use strict';
 
 // Example taken from https://github.com/meteor-factory/react-native-tinder-swipe-cards
-import React, { StyleSheet, Text, View,Image} from 'react-native';
+import React, { StyleSheet, Text, View, Image} from 'react-native';
 import SwipeCards from 'react-native-swipe-cards';
 import MatchesDB from '../../config/db/matches';
 
